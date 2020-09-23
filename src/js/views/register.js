@@ -9,7 +9,14 @@ function Register() {
 	return (
 		<>
 			<div className="register container-fluid d-flex flex-column align-items-center">
-				<img className="img-fluid mt-4" src={Logo} />
+				<a href="/register">
+					<img
+						style={{ width: "120px", height: "135px" }}
+						className="img-fluid rounded mx-auto d-block mt-4"
+						src={Logo}
+						alt="ludotopy-logo"
+					/>
+				</a>
 				<h1 className="mt-5">Registrarse</h1>
 				<Form>
 					<Form.Group controlId="formGroupEmail">
@@ -37,7 +44,7 @@ function Register() {
 					Registrarse
 				</Button>
 				<p>
-					Ya tienes una cuenta <span onClick={e => history.push(`/`)}>Inicia Sesion</span>
+					Ya tienes una cuenta <span onClick={e => history.push(`/login`)}>Inicia Sesion</span>
 				</p>
 			</div>
 		</>
