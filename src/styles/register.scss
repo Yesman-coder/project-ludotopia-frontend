@@ -1,0 +1,62 @@
+body{
+    overflow-x: hidden;
+}
+.input {
+    background: #FFFFFF;
+    border: 1px solid #D2D2D2;
+    box-sizing: border-box;
+    border-radius: 20px;
+    width: 70vw;
+}
+.label{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1em;
+    line-height: 21px;
+    color: #646464;
+    opacity: 0.3;
+}
+h1 {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 56px;
+
+    color: #797B79;
+}
+.button{
+    width: 45vw;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background: #5EC762;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.button:hover{
+    background: #5EC762;
+}
+// p{
+//     margin-bottom: 365px;
+// }
+span{
+    color: #5EC762;
+    text-decoration: underline;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .input {
+        width: 30vw;
+    }
+    .button{
+        width: 25vw;
+    }
+}
+
+
+
