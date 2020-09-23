@@ -36,6 +36,10 @@ function Register() {
 						<Form.Control className="input" type="text" />
 					</Form.Group>
 					<Form.Group controlId="formGroupPassword">
+						<Form.Label className="label">Telefono</Form.Label>
+						<Form.Control className="input" type="text" />
+					</Form.Group>
+					<Form.Group controlId="formGroupPassword">
 						<Form.Label className="label">Contraseña</Form.Label>
 						<Form.Control className="input" type="password" />
 					</Form.Group>
