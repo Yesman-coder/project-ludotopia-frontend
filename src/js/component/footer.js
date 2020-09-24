@@ -1,5 +1,17 @@
 import React, { Component } from "react";
-import ImgFooter from "../../img/footer.png";
+import { useLocation } from "react-router-dom";
 import "../../styles/footer.scss";
 
-export const Footer = () => <div className="footerimg container-fluid page-footer" />;
+export const Footer = () => {
+	const location = useLocation();
+	console.log(location.pathname);
+	return (
+		<>
+			{location.pathname == "/register" || location.pathname == "/login" ? (
+				<div className="footerimg container-fluid" />
+			) : (
+				""
+			)}
+		</>
+	);
+};

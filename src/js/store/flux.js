@@ -1,42 +1,39 @@
+const baseUrl = "https://3000-f7805165-a2e1-4fa2-915c-b5cfcef126c7.ws-us02.gitpod.io";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			user: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			fetchCreateUser: async (email, name, last_name, phone, username, password) => {
+				let user = [];
+				try {
+					let response = await fetch(`${baseUrl}/register`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							email,
+							name,
+							last_name,
+							phone,
+							username,
+							password
+						})
+					});
+					if (response.ok) {
+						user = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed");
+					console.log(error);
+				}
+				setStore({
+					user: user
 				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
 		}
 	};

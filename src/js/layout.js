@@ -22,6 +22,7 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
+					<Navbar />
 					<Switch>
 						<Route exact path="/register">
 							<Register />
@@ -30,15 +31,12 @@ const Layout = () => {
 							<Login />
 						</Route>
 						<Route exact path="/">
-							<Navbar />
 							<Home />
 						</Route>
 						<Route exact path="/demo">
-							<Navbar />
 							<Demo />
 						</Route>
 						<Route exact path="/single/:theid">
-							<Navbar />
 							<Single />
 						</Route>
 						<Route>
