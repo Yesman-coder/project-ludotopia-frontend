@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../../img/logo.png";
 import "../../styles/register.scss";
 import { Form, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 function Register() {
+	const { store, actions } = useContext(Context);
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [name, setName] = useState("");
+	const [lastname, setLastname] = useState("");
+	const [phone, setPhone] = useState("");
+	const [pw, setPw] = useState("");
 	const history = useHistory();
 	return (
 		<>
@@ -21,26 +29,37 @@ function Register() {
 				<Form>
 					<Form.Group controlId="formGroupEmail">
 						<Form.Label className="label">Email</Form.Label>
-						<Form.Control className="input" type="email" />
+						<Form.Control onChange={e => setEmail(e.target.value)} className="input" type="email" />
 					</Form.Group>
 					<Form.Group controlId="formGroupPassword">
 						<Form.Label className="label">Nombre de usuario</Form.Label>
-						<Form.Control className="input" type="text" />
+						<Form.Control onChange={e => setUsername(e.target.value)} className="input" type="text" />
 					</Form.Group>
 					<Form.Group controlId="formGroupPassword">
 						<Form.Label className="label">Nombre</Form.Label>
-						<Form.Control className="input" type="text" />
+						<Form.Control onChange={e => setName(e.target.value)} className="input" type="text" />
 					</Form.Group>
 					<Form.Group controlId="formGroupPassword">
 						<Form.Label className="label">Apellido</Form.Label>
-						<Form.Control className="input" type="text" />
+						<Form.Control onChange={e => setLastname(e.target.value)} className="input" type="text" />
+					</Form.Group>
+					<Form.Group controlId="formGroupPassword">
+						<Form.Label className="label">Telefono</Form.Label>
+						<Form.Control onChange={e => setPhone(e.target.value)} className="input" type="text" />
 					</Form.Group>
 					<Form.Group controlId="formGroupPassword">
 						<Form.Label className="label">Contraseña</Form.Label>
-						<Form.Control className="input" type="password" />
+						<Form.Control onChange={e => setPw(e.target.value)} className="input" type="password" />
 					</Form.Group>
 				</Form>
-				<Button className="button" variant="success" type="submit">
+				<Button
+					onClick={e => {
+						actions.fetchCreateUser(email, name, lastname, phone, username, pw);
+						history.push(`/`);
+					}}
+					className="button"
+					variant="success"
+					type="submit">
 					Registrarse
 				</Button>
 				<p>

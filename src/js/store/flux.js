@@ -1,45 +1,68 @@
+const baseUrl = "https://3000-f7805165-a2e1-4fa2-915c-b5cfcef126c7.ws-us02.gitpod.io";
 const getState = ({ getStore, getActions, setStore }) => {
-    const baseUrl= "https://3000-e138cd05-a862-42ad-8343-3b3ea10be3af.ws-us02.gitpod.io/"
+	const baseUrl = "https://3000-e138cd05-a862-42ad-8343-3b3ea10be3af.ws-us02.gitpod.io/";
 	return {
 		store: {
-			users: []
+			user: []
 		},
 		actions: {
-            login: async (username, password) => {
-				let actions = getActions();
-				if (username && password != "") {
-					const response = await fetch(`${baseUrl}/todos`, {
+			fetchCreateUser: async (email, name, last_name, phone, username, password) => {
+				let user = [];
+				try {
+					let response = await fetch(`${baseUrl}/register`, {
 						method: "POST",
-						body: JSON.stringify({ label: `${task}`, done: false }),
 						headers: {
-							"Content-Type": "application/json"
-						}
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							email,
+							name,
+							last_name,
+							phone,
+							username,
+							password
+						})
 					});
-					await actions.getList();
-				} else alert("Please type a new task");
-			},
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+					if (response.ok) {
+						user = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed");
+					console.log(error);
+				}
+				setStore({
+					user: user
 				});
+			},
 
-				//reset the global store
-				setStore({ demo: demo });
+			fetchLogin: async (email, password) => {
+				let user = [];
+				try {
+					let response = await fetch(`${baseUrl}/login`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							email,
+							password
+						})
+					});
+					if (response.ok) {
+						user = await response.json();
+						localStorage.setItem("token", JSON.stringify(user.jwt));
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed");
+					console.log(error);
+				}
+				setStore({
+					user: user
+				});
 			}
 		}
 	};

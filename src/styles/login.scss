@@ -1,5 +1,8 @@
-body{
-    overflow-x: hidden;
+.content{
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 .input {
@@ -69,7 +72,7 @@ $color: #5EC762;
     color: #fff;
     font-family: Raleway;
     font-size: 1rem;
-    letter-spacing: .25rem;
+    letter-spacing: .05rem;
     transition: all .3s;
     position: relative;
     overflow: hidden;
