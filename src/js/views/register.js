@@ -14,6 +14,7 @@ function Register() {
 	const [phone, setPhone] = useState("");
 	const [pw, setPw] = useState("");
 	const history = useHistory();
+
 	return (
 		<>
 			<div className="register container-fluid d-flex flex-column align-items-center">
@@ -55,7 +56,7 @@ function Register() {
 				<Button
 					onClick={e => {
 						actions.fetchCreateUser(email, name, lastname, phone, username, pw);
-						history.push(`/`);
+						history.push(`/login`);
 					}}
 					className="button"
 					variant="success"

@@ -11,6 +11,21 @@ function Login() {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmed, setConfirmed] = useState(true);
+
+	let mostrar = "";
+
+	function historyPush(data) {
+		if (data == true) {
+			history.push("/");
+		} else {
+			setConfirmed(false);
+		}
+	}
+	if (confirmed == false) {
+		mostrar = "mostrar";
+	}
+
 	return (
 		<>
 			<div className="login h-100 container-fluid d-flex flex-column">
@@ -32,21 +47,21 @@ function Login() {
 						<Form.Group controlId="formGroupPassword">
 							<Form.Label className="label">Password</Form.Label>
 							<Form.Control
-								onChange={e => setPassword(e.target.value)}
+								onChange={e => {
+									setPassword(e.target.value);
+									localStorage.setItem("done", JSON.stringify(true));
+								}}
 								className="input"
 								type="password"
 							/>
 						</Form.Group>
 					</Form>
+					<p className={"error m-1 " + mostrar}>* Usuario o Contraseña invalido</p>
 					<Button
-						// onClick={async e => {
-						// 	await actions.fetchLogin(email, password);
-						// 	if (localData == undefined) {
-						// 		history.push(`/login`);
-						// 	} else {
-						// 		history.push("/");
-						// 	}
-						// }}
+						onClick={async e => {
+							await actions.fetchLogin(email, password);
+							historyPush(store.done);
+						}}
 						className="button"
 						variant="success"
 						type="submit">

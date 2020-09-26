@@ -1,9 +1,9 @@
-const baseUrl = "https://3000-f7805165-a2e1-4fa2-915c-b5cfcef126c7.ws-us02.gitpod.io";
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-e138cd05-a862-42ad-8343-3b3ea10be3af.ws-us02.gitpod.io/";
+	const baseUrl = "http://127.0.0.1:4000";
 	return {
 		store: {
-			user: []
+			user: [],
+			done: null
 		},
 		actions: {
 			fetchCreateUser: async (email, name, last_name, phone, username, password) => {
@@ -39,6 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchLogin: async (email, password) => {
 				let user = [];
+				let done = true;
 				try {
 					let response = await fetch(`${baseUrl}/login`, {
 						method: "POST",
@@ -52,8 +53,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.ok) {
 						user = await response.json();
-						localStorage.setItem("token", JSON.stringify(user.jwt));
+						localStorage.setItem("tokenlogin", JSON.stringify(user.jwt));
 					} else {
+						done = false;
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
 				} catch (error) {
@@ -61,7 +63,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 				setStore({
-					user: user
+					done: done
+				});
+			},
+			fetchGetUser: async token => {
+				let user = [];
+				let done = true;
+				try {
+					let response = await fetch(`${baseUrl}/user`, {
+						method: "GET",
+						headers: {
+							Authorization: `Bearer ${token}`
+						}
+					});
+					if (response.ok) {
+						user = await response.json();
+						localStorage.setItem("username", JSON.stringify(user.username));
+
+						console.log("dentro del fetch");
+					} else {
+						done = false;
+
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed");
+					console.log(error);
+				}
+				setStore({
+					user: user,
+					done: done
 				});
 			}
 		}

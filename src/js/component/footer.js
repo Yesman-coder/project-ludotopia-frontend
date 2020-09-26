@@ -4,7 +4,6 @@ import "../../styles/footer.scss";
 
 export const Footer = () => {
 	const location = useLocation();
-	console.log(location.pathname);
 	return (
 		<>
 			{location.pathname == "/register" || location.pathname == "/login" ? (

@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
 	const location = useLocation();
-	console.log(location.pathname);
 	return (
 		<>
 			{location.pathname == "/register" || location.pathname == "/login" ? (

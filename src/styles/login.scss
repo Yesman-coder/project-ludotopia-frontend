@@ -22,6 +22,11 @@
     color: #646464;
     opacity: 0.3;
 }
+.error{
+    color: red;
+    display: none;
+    &.mostrar{display: flex;}
+}
 
 h1 {
     font-family: Raleway;
