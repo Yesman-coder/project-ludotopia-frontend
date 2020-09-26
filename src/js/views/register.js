@@ -4,6 +4,7 @@ import "../../styles/register.scss";
 import { Form, Button } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { useForm } from "react-hook-form";
 
 function Register() {
 	const { store, actions } = useContext(Context);
@@ -18,7 +19,7 @@ function Register() {
 	return (
 		<>
 			<div className="register container-fluid d-flex flex-column align-items-center">
-				<a href="/register">
+				<a href="/">
 					<img
 						style={{ width: "120px", height: "135px" }}
 						className="img-fluid rounded mx-auto d-block mt-4"
