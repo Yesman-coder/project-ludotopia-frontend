@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import { useLocation } from "react-router-dom";
+import "../../styles/footer.scss";
 
-export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
-	</footer>
-);
+export const Footer = () => {
+	const location = useLocation();
+	return (
+		<>
+			{location.pathname == "/register" || location.pathname == "/login" ? (
+				<div className="footerimg container-fluid" />
+			) : (
+				""
+			)}
+		</>
+	);
+};
