@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Logo from "../../img/logo.png";
 import "../../styles/register.scss";
-// import { Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/demo.scss";
@@ -17,8 +17,8 @@ export const Demo = () => {
 	const [phone, setPhone] = useState("");
 	const [pw, setPw] = useState("");
 	const history = useHistory();
+	const { register, errors, handleSubmit } = useForm();
 
-	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = data => console.log(data);
 
 	return (
@@ -34,7 +34,7 @@ export const Demo = () => {
 			<h1 className="mt-5">Registrarse</h1>
 
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="form-group">
+				<div className="form-group container-fluid d-flex flex-column">
 					<label className="label" htmlFor="exampleInputEmail1">
 						Email address
 					</label>
@@ -46,7 +46,7 @@ export const Demo = () => {
 						type="email"
 						id="exampleFormControlInput1"
 					/>
-					{errors.email && <p className="text-danger form-text text-muted">Por favor introduzca un email!</p>}
+					{errors.email && <p className="text-danger">Por favor introduzca un email!</p>}
 
 					<label className="label" htmlFor="exampleInputEmail1">
 						Nombre de Usuario
@@ -59,9 +59,7 @@ export const Demo = () => {
 						type="text"
 						id="exampleFormControlInput1"
 					/>
-					{errors.userName && (
-						<p className="text-danger form-text text-muted">Por favor introduzca un nombre de usuario!</p>
-					)}
+					{errors.userName && <p className="text-danger">Por favor introduzca un nombre de usuario!</p>}
 
 					<label className="label" htmlFor="exampleInputEmail1">
 						Nombre
@@ -74,7 +72,7 @@ export const Demo = () => {
 						type="text"
 						id="exampleFormControlInput1"
 					/>
-					{errors.name && <p className="form-text text-muted">Por favor introduzca un nombre!</p>}
+					{errors.name && <p className="text-danger">Por favor introduzca un nombre!</p>}
 
 					<label className="label" htmlFor="exampleInputEmail1">
 						Apellido
@@ -87,35 +85,44 @@ export const Demo = () => {
 						type="text"
 						id="exampleFormControlInput1"
 					/>
-					{errors.lastname && <p className="form-text text-muted">Por favor introduzca un apellido!</p>}
+					{errors.lastname && <p className="text-danger">Por favor introduzca un apellido!</p>}
 
 					<label className="label" htmlFor="exampleInputEmail1">
 						Teléfono
 					</label>
 					<input
 						name="phone"
-						ref={register({ max: 20, required: true, pattern: /^[A-Za-z]+$/i })}
-						onChange={e => setLastname(e.target.value)}
+						ref={register({ max: 20, required: true })}
+						onChange={e => setPhone(e.target.value)}
 						className="input form-control"
 						type="text"
 						id="exampleFormControlInput1"
 					/>
-					{errors.phone && <p className="form-text text-muted">Por favor introduzca un telefono!</p>}
+					{errors.phone && <p className="text-danger">Por favor introduzca un telefono!</p>}
 
-					<label className="label" htmlFor="exampleInputEmail1">
-						Contraseña
-					</label>
-					<input
-						name="password"
-						ref={register({ max: 20, required: true, pattern: /^[A-Za-z]+$/i })}
-						onChange={e => setLastname(e.target.value)}
-						className="input form-control"
-						type="text"
-						id="exampleFormControlInput1"
-					/>
-					{errors.contraseña && <p className="form-text text-muted">Por favor introduzca una contraseña!</p>}
+					<Form.Group controlId="formGroupPassword">
+						<Form.Label className="label">Contraseña</Form.Label>
+						<Form.Control
+							onChange={e => setPw(e.target.value)}
+							className="input"
+							type="password"
+							name="password"
+							ref={register({ max: 20, required: true })}
+						/>
+						{errors.password && <p className="text-danger">Por favor introduzca una contraseña!</p>}
+					</Form.Group>
 
-					<input type="submit" />
+					{/* <input type="submit" className="button mt-5" /> */}
+					<Button
+						onClick={e => {
+							actions.fetchCreateUser(email, name, lastname, phone, username, pw);
+							// history.push(`/login`);
+						}}
+						className="button"
+						variant="success"
+						type="submit">
+						Registrarse
+					</Button>
 				</div>
 			</form>
 		</div>

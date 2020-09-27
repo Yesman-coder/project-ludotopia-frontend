@@ -4,7 +4,6 @@ import "../../styles/register.scss";
 import { Form, Button } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { useForm } from "react-hook-form";
 
 function Register() {
 	const { store, actions } = useContext(Context);
