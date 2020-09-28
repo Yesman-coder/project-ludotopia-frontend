@@ -7,19 +7,47 @@ import { Form, Button } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/demo.scss";
+import { yupResolver } from "@hookform/resolvers";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+	name: yup.string().required(),
+	email: yup
+		.string()
+		.required()
+		.email(),
+	lastname: yup.string().required(),
+	userName: yup.string().required(),
+	phone: yup.number().required(),
+	password: yup.string().required()
+});
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [name, setName] = useState("");
-	const [lastname, setLastname] = useState("");
-	const [phone, setPhone] = useState("");
-	const [pw, setPw] = useState("");
+	const [confirmed, setConfirmed] = useState(true);
 	const history = useHistory();
-	const { register, errors, handleSubmit } = useForm();
+	const { register, errors, handleSubmit } = useForm({
+		resolver: yupResolver(schema)
+	});
 
-	const onSubmit = data => console.log(data);
+	const onSubmit = async data => {
+		await actions.fetchCreateUser(data.email, data.name, data.lastname, data.phone, data.userName, data.password);
+		historyPush(store.done);
+	};
+
+	let userNotValid = "";
+
+	function historyPush(data) {
+		if (data == true) {
+			history.push("/login");
+		} else {
+			setConfirmed(false);
+		}
+	}
+
+	if (confirmed == false) {
+		userNotValid = "mostrar";
+	}
 
 	return (
 		<div className="register container-fluid d-flex flex-column align-items-center">
@@ -40,8 +68,7 @@ export const Demo = () => {
 					</label>
 					<input
 						name="email"
-						ref={register({ required: true })}
-						onChange={e => setEmail(e.target.value)}
+						ref={register()}
 						className="input form-control"
 						type="email"
 						id="exampleFormControlInput1"
@@ -53,8 +80,7 @@ export const Demo = () => {
 					</label>
 					<input
 						name="userName"
-						ref={register({ required: true, pattern: /^[A-Za-z]+$/i })}
-						onChange={e => setUsername(e.target.value)}
+						ref={register({ pattern: /^[A-Za-z]+$/i })}
 						className="input form-control"
 						type="text"
 						id="exampleFormControlInput1"
@@ -66,12 +92,12 @@ export const Demo = () => {
 					</label>
 					<input
 						name="name"
-						ref={register({ max: 20, required: true, pattern: /^[A-Za-z]+$/i })}
-						onChange={e => setName(e.target.value)}
+						ref={register()}
 						className="input form-control"
 						type="text"
 						id="exampleFormControlInput1"
 					/>
+
 					{errors.name && <p className="text-danger">Por favor introduzca un nombre!</p>}
 
 					<label className="label" htmlFor="exampleInputEmail1">
@@ -79,8 +105,7 @@ export const Demo = () => {
 					</label>
 					<input
 						name="lastname"
-						ref={register({ max: 20, required: true, pattern: /^[A-Za-z]+$/i })}
-						onChange={e => setLastname(e.target.value)}
+						ref={register()}
 						className="input form-control"
 						type="text"
 						id="exampleFormControlInput1"
@@ -93,7 +118,6 @@ export const Demo = () => {
 					<input
 						name="phone"
 						ref={register({ max: 20, required: true })}
-						onChange={e => setPhone(e.target.value)}
 						className="input form-control"
 						type="text"
 						id="exampleFormControlInput1"
@@ -103,7 +127,6 @@ export const Demo = () => {
 					<Form.Group controlId="formGroupPassword">
 						<Form.Label className="label">Contraseña</Form.Label>
 						<Form.Control
-							onChange={e => setPw(e.target.value)}
 							className="input"
 							type="password"
 							name="password"
@@ -111,18 +134,24 @@ export const Demo = () => {
 						/>
 						{errors.password && <p className="text-danger">Por favor introduzca una contraseña!</p>}
 					</Form.Group>
-
+					<p className={"error m-1 " + userNotValid}>* Usuario no valido</p>
 					{/* <input type="submit" className="button mt-5" /> */}
 					<Button
-						onClick={e => {
-							actions.fetchCreateUser(email, name, lastname, phone, username, pw);
-							// history.push(`/login`);
-						}}
+						// onClick={e => {
+						// 	// 	actions.fetchCreateUser(email, name, lastname, phone, username, pw);
+						// 	// 	// history.push(`/login`);
+						// 	historyPush(store.done);
+						// }}
 						className="button"
 						variant="success"
 						type="submit">
 						Registrarse
 					</Button>
+					<div className="container-fluid d-flex justify-content-center">
+						<p className="">
+							Ya tienes una cuenta <span onClick={e => history.push(`/login`)}>Inicia Sesion</span>
+						</p>
+					</div>
 				</div>
 			</form>
 		</div>

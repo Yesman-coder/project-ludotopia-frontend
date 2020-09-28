@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			fetchCreateUser: async (email, name, last_name, phone, username, password) => {
 				let user = [];
+				let done = true;
 				try {
 					let response = await fetch(`${baseUrl}/register`, {
 						method: "POST",
@@ -26,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						user = await response.json();
 					} else {
+						done = false;
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
 				} catch (error) {
@@ -33,7 +35,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 				setStore({
-					user: user
+					user: user,
+					done: done
 				});
 			},
 
@@ -79,8 +82,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						user = await response.json();
 						localStorage.setItem("username", JSON.stringify(user.username));
-
-						console.log("dentro del fetch");
 					} else {
 						done = false;
 

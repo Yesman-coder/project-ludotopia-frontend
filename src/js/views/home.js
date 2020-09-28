@@ -21,7 +21,7 @@ export const Home = () => {
 	useEffect(() => {
 		// if (local_done == true || local_done == null) {
 		actions.fetchGetUser(JSON.parse(local_jwt));
-		//historyPush(local_done);
+		historyPush(store.done);
 		// } else {
 		// 	history.push("/login");
 		// }

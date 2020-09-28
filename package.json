@@ -70,6 +70,7 @@
 		]
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^0.1.1",
 		"bootstrap": "^4.3.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
@@ -77,6 +78,7 @@
 		"react-dom": "^16.8.4",
 		"react-hook-form": "^6.8.6",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^5.2.0"
+		"react-router-dom": "^5.2.0",
+		"yup": "^0.29.3"
 	}
 }

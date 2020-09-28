@@ -24,19 +24,19 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/register">
+						{/* <Route exact path="/register">
 							<Register />
-						</Route>
+						</Route> */}
 						<Route exact path="/login">
 							<Login />
 						</Route>
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
+						<Route exact path="/register">
 							<Demo />
 						</Route>
-						<Route exact path="/single/:theid">
+						<Route exact path="/single">
 							<Single />
 						</Route>
 						<Route>
