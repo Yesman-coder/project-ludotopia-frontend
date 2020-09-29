@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
+import { UserHome } from "./views/userhome";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { Navigation } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Register from "./views/register";
 import Login from "./views/login";
@@ -23,11 +24,8 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<Navigation />
 					<Switch>
-						<Route exact path="/register">
-							<Register />
-						</Route>
 						<Route exact path="/login">
 							<Login />
 						</Route>
@@ -37,14 +35,17 @@ const Layout = () => {
 						<Route exact path="/create-bet">
 							<CreateBet />
 						</Route>
-						<Route exact path="/demo">
+						<Route exact path="/register">
 							<Demo />
 						</Route>
-						<Route exact path="/single/:theid">
+						<Route exact path="/single">
 							<Single />
 						</Route>
+						<Route exact path="/userhome">
+							<UserHome />
+						</Route>
 						<Route>
-							<h1>Not found!</h1>
+							<h1 style={{ marginLeft: "4rem" }}>Not found!</h1>
 						</Route>
 					</Switch>
 					<Footer />
