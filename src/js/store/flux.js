@@ -2,6 +2,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const baseUrl = "http://127.0.0.1:4000";
 	return {
 		store: {
+			cards: [
+				{
+					index: 1,
+					sender: "Yesman",
+					receiver: "Boris",
+					betTitle: "Apuesta tu honor",
+					betDesc: "El que no quiera a su mama pierde",
+					ammount: 300,
+					emissionDate: "13/12/2020",
+					dueDate: "13/12/2021"
+				},
+				{
+					index: 2,
+					sender: "Ivan",
+					receiver: "Omar",
+					betTitle: "Apuesta tu ano",
+					betDesc: "El que no quiera a su ano pierde",
+					ammount: 500,
+					emissionDate: "14/02/2021",
+					dueDate: "13/12/2021"
+				}
+			],
 			user: [],
 			done: null
 		},

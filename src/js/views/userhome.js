@@ -15,19 +15,23 @@ export const UserHome = () => {
 	}, []);
 
 	return (
-		<div className="h-100 container-fluid d-flex flex-column ml-4">
-			<div className="content justify-content-center p-5">
-				{/* CONDITIONAL RENDERING OF THE GREET */}
-				<UserCard
-					index={1}
-					sender="Yesman"
-					receiver="Boris"
-					betTitle="Apostar tus nalgas"
-					betDesc="El que se caiga de nalgas pierde"
-					ammount="700 Lds"
-					emissionDate="13-12-2020"
-					dueDate="13-12-2020"
-				/>
+		<div className="h-100 container-fluid d-flex flex-column">
+			<div className="content justify-content-center">
+				{store.cards.map((newBet, index) => {
+					return (
+						<UserCard
+							key={index}
+							index={index}
+							sender={newBet.sender}
+							receiver={newBet.receiver}
+							betTitle={newBet.betTitle}
+							betDesc={newBet.betDesc}
+							ammount={newBet.ammount}
+							emissionDate={newBet.emissionDate}
+							dueDate={newBet.dueDate}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);

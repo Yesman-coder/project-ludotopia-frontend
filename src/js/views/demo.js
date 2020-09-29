@@ -10,6 +10,9 @@ import "../../styles/demo.scss";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
+// IMPORT @hookform/resolvers
+// IMPORT react-bootstrap
+
 const schema = yup.object().shape({
 	name: yup.string().required(),
 	email: yup
