@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			user: [],
-			done: null
+			done: null,
+			bets: []
 		},
 		actions: {
 			fetchCreateUser: async (email, name, last_name, phone, username, password) => {
@@ -93,6 +94,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					user: user,
 					done: done
+				});
+			},
+			fetchCreateBet: async (betName, description, targetUser, ludos, dueDate) => {
+				let store = getStore();
+
+				try {
+					let response = await fetch(`${baseUrl}/bet`, {
+						method: "POST",
+						headers: {
+							Authorization: `Bearer ${store.token}`,
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							betName,
+							description,
+							targetUser,
+							ludos,
+							dueDate
+						})
+					});
+					if (response.ok) {
+						let bets = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed");
+					console.log(error);
+				}
+				setStore({
+					bets: [...store.bets, bets]
 				});
 			}
 		}
