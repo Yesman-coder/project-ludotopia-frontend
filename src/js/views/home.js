@@ -3,6 +3,7 @@ import Logo from "../../img/logo.png";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
+import { UserCard } from "../component/usercard.js";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -28,11 +29,21 @@ export const Home = () => {
 	}, []);
 
 	return (
-		<div className="h-100 container-fluid d-flex flex-column">
-			<div className="content justify-content-center">
+		<div className="h-100 container-fluid d-flex flex-column ml-4">
+			<div className="content justify-content-center p-5">
 				{/* CONDITIONAL RENDERING OF THE GREET */}
-				{`${store.user.username}` != "undefined" && <h1>Hello {`${store.user.username}`}</h1>}
-				<img style={{ width: "220px", height: "235px" }} src={Logo} />
+				<UserCard
+					index={1}
+					sender="Yesman"
+					receiver="Boris"
+					betTitle="Apostar tus nalgas"
+					betDesc="El que se caiga de nalgas pierde"
+					ammount="700 Lds"
+					emissionDate="13-12-2020"
+					dueDate="13-12-2020"
+				/>
+				{`${store.user.username}` != "undefined" && <h3>Hello {`${store.user.username}`}</h3>}
+				<img style={{ marginTop: "3rem", width: "5rem", height: "5.5rem" }} src={Logo} />
 				<a href="#" className="btn btn-success mt-5">
 					If you see this green button, bootstrap is working
 				</a>
