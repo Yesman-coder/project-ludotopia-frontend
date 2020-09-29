@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	const location = useLocation();
 	return (
 		<>
@@ -19,6 +21,9 @@ export const Navbar = () => {
 						<Link to="/register">
 							<button className="btn btn-primary">Register</button>
 						</Link>
+						<button className="btn btn-primary" onClick={e => actions.logUserOut()}>
+							Log out
+						</button>
 					</div>
 				</nav>
 			)}
