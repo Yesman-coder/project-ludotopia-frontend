@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box;
+    font-family: Raleway;
+}
+
+.navbar{
+    padding: 0.5rem 0.5rem;
+}
+
+.tablet {
+    padding: 0.5rem 0.3rem;
+}
+
+.icon{
+    font-size: 2rem;
+    color:white;
+    &:hover{
+    color:gray;
+    }
+}
+
+.btn-ludos {
+    border-radius: 20px;
+}
+
+.plus{
+    color:gray;
+    font-size:3rem;
+}
+
+.nav-pills .nav-link{
+    border-radius: 0px;
+}
+
+.card{
+    border-radius: 20px;
+    &.card-header{
+        padding:0.5rem;
+    }
+    &.card-text{
+        font-size:0.8rem;
+    }
+}
+
+
+p{
+    font-size:0.8rem;
+}
+
+.btn-block {
+    display: block;
+
+}
+.vertical{
+    width: 4vw;
+}
+
+@media screen and (max-width: 992px) {
+    .vertical {
+      width: 12vw;
+    }
+  }
+
+
