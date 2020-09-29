@@ -31,19 +31,8 @@ export const Home = () => {
 	return (
 		<div className="h-100 container-fluid d-flex flex-column ml-4">
 			<div className="content justify-content-center p-5">
-				{/* CONDITIONAL RENDERING OF THE GREET */}
-				<UserCard
-					index={1}
-					sender="Yesman"
-					receiver="Boris"
-					betTitle="Apostar tus nalgas"
-					betDesc="El que se caiga de nalgas pierde"
-					ammount="700 Lds"
-					emissionDate="13-12-2020"
-					dueDate="13-12-2020"
-				/>
 				{`${store.user.username}` != "undefined" && <h3>Hello {`${store.user.username}`}</h3>}
-				<img style={{ marginTop: "3rem", width: "5rem", height: "5.5rem" }} src={Logo} />
+				<img style={{ marginTop: "3rem", width: "12rem", height: "12.5rem" }} src={Logo} />
 				<a href="#" className="btn btn-success mt-5">
 					If you see this green button, bootstrap is working
 				</a>

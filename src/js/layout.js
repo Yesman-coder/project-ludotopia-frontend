@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
+import { UserHome } from "./views/userhome";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
@@ -39,8 +40,11 @@ const Layout = () => {
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
+						<Route exact path="/userhome">
+							<UserHome />
+						</Route>
 						<Route>
-							<h1>Not found!</h1>
+							<h1 style={{ marginLeft: "4rem" }}>Not found!</h1>
 						</Route>
 					</Switch>
 					<Footer />

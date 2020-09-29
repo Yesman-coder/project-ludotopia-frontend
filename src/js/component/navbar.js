@@ -18,7 +18,7 @@ export const Navigation = () => {
 				<>
 					<Navbar bg="light" sticky="top">
 						<Navbar.Brand>
-							<a href="/register">
+							<a href="/">
 								<img
 									style={{ width: "2rem", height: "2.2rem" }}
 									className="img-fluid rounded d-block"
@@ -36,7 +36,7 @@ export const Navigation = () => {
 								</Button>
 							</Nav>
 							<Form inline>
-								<Plus className="plus" />
+								<Plus style={{ cursor: "pointer" }} className="plus" />
 							</Form>
 						</Navbar.Collapse>
 					</Navbar>
@@ -55,7 +55,7 @@ export const Navigation = () => {
 								className="nav-link tablet"
 								id="v-pills-home-tab"
 								data-toggle="pill"
-								href="/"
+								href="/userhome"
 								role="tab"
 								aria-controls="v-pills-home"
 								aria-selected="true">
