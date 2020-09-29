@@ -122,7 +122,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchCreateBet: async (betName, description, targetUser, ludos, dueDate) => {
 				let store = getStore();
-
 				try {
 					let response = await fetch(`${baseUrl}/bet`, {
 						method: "POST",
