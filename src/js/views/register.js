@@ -17,7 +17,7 @@ function Register() {
 
 	return (
 		<>
-			<div className="register container-fluid d-flex flex-column align-items-center">
+			<div className="register h-100 container-fluid d-flex flex-column align-items-center">
 				<a href="/">
 					<img
 						style={{ width: "120px", height: "135px" }}

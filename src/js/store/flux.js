@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-b367df32-32c2-4a07-bcb6-bb809bc8dcc7.ws-us02.gitpod.io";
+	const baseUrl = "http://127.0.0.1:4000";
 	return {
 		store: {
 			cards: [

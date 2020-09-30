@@ -6,7 +6,7 @@ import "../../styles/register.scss";
 import { Form, Button } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/demo.scss";
+
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
@@ -48,8 +48,14 @@ export const Demo = () => {
 			setConfirmed(false);
 		}
 	}, []);
+
+	let show = "";
+	if (confirmed == false) {
+		show = "show";
+	}
+
 	return (
-		<div className="register container-fluid d-flex flex-column align-items-center">
+		<div className="register h-100 container-fluid d-flex flex-column align-items-center">
 			{store.token == "" ? (
 				<>
 					<a href="/register">
@@ -74,8 +80,8 @@ export const Demo = () => {
 								type="email"
 								id="exampleFormControlInput1"
 							/>
-							{errors.email && <p className="text-danger">Por favor introduzca un email!</p>}
-
+							{/* {errors.email && <p className="text-danger">Por favor introduzca un email!</p>} */}
+							{errors.email && <p className="text-danger">{errors.email.message}</p>}
 							<label className="label" htmlFor="exampleInputEmail1">
 								Nombre de Usuario
 							</label>
@@ -137,7 +143,7 @@ export const Demo = () => {
 								/>
 								{errors.password && <p className="text-danger">Por favor introduzca una contraseña!</p>}
 							</Form.Group>
-							<p className={"error m-1 "}>* Usuario no valido</p>
+							<p className={"error m-1 " + show}>* Usuario no valido</p>
 							{/* <input type="submit" className="button mt-5" /> */}
 							<Button
 								// onClick={e => {
