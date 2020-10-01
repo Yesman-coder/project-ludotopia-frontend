@@ -8,7 +8,7 @@ import { Plus, HouseFill, Search, BellFill, Cash } from "react-bootstrap-icons";
 import "../../styles/navbar.scss";
 
 export const Navigation = () => {
-	const { store } = useContext(Context);
+	const { store, actions } = useContext(Context);
 	const location = useLocation();
 	return (
 		<>

@@ -17,16 +17,16 @@ function Register() {
 
 	return (
 		<>
-			<div className="register container-fluid d-flex flex-column align-items-center">
+			<div className="register h-100 container-fluid d-flex flex-column align-items-center">
 				<a href="/">
 					<img
 						style={{ width: "120px", height: "135px" }}
-						className="img-fluid rounded mx-auto d-block mt-4"
+						className="img-fluid rounded mx-auto d-block mt-2"
 						src={Logo}
 						alt="ludotopy-logo"
 					/>
 				</a>
-				<h1 className="mt-5">Registrarse</h1>
+				<h1 className="mt-2">Registrarse</h1>
 				<Form>
 					<Form.Group controlId="formGroupEmail">
 						<Form.Label className="label">Email</Form.Label>

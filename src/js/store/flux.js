@@ -34,13 +34,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					dueDate: "13/12/2021"
 				}
 			],
-			user: [],
-			done: null
+			token: null,
+			user: []
 		},
 		actions: {
+			logUserOut: () => {
+				localStorage.removeItem("token");
+				// aquí podrían hacer fetch a un endpoint logout que anule el token... la vaina es que
+				// eso requiere cierto trabajo medio denso en el back end. No lo hagan para el mvp.
+				// si quieren guiatura, pueden usar el repositorio de tintrack-backend de ernesto.
+				setStore({ token: "" });
+			},
 			fetchCreateUser: async (email, name, last_name, phone, username, password) => {
-				let user = [];
-				let done = true;
 				try {
 					let response = await fetch(`${baseUrl}/register`, {
 						method: "POST",
@@ -57,24 +62,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					});
 					if (response.ok) {
-						user = await response.json();
+						return true;
 					} else {
-						done = false;
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
 				} catch (error) {
 					console.log("something failed");
 					console.log(error);
 				}
-				setStore({
-					user: user,
-					done: done
-				});
+				return false;
 			},
 
 			fetchLogin: async (email, password) => {
 				let user = [];
-				let done = true;
 				try {
 					let response = await fetch(`${baseUrl}/login`, {
 						method: "POST",
@@ -88,45 +88,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.ok) {
 						user = await response.json();
-						localStorage.setItem("tokenlogin", JSON.stringify(user.jwt));
+						localStorage.setItem("token", user.jwt);
+						setStore({ user, token: user.jwt });
+						return true;
 					} else {
-						done = false;
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
 				} catch (error) {
 					console.log("something failed");
 					console.log(error);
 				}
-				setStore({
-					done: done
-				});
+				setStore({ user: null, token: "" });
+				return false;
 			},
 			fetchGetUser: async token => {
-				let user = [];
-				let done = true;
-				try {
-					let response = await fetch(`${baseUrl}/user`, {
-						method: "GET",
-						headers: {
-							Authorization: `Bearer ${token}`
+				if (token) {
+					try {
+						console.log(`this is token befor get ${token}`);
+						let response = await fetch(`${baseUrl}/user`, {
+							method: "GET",
+							headers: {
+								Authorization: `Bearer ${token}`,
+								"Content-Type": "application/json"
+							}
+						});
+						if (response.ok) {
+							let user = await response.json();
+							setStore({ token, user });
+							return true;
+						} else {
+							console.log(`error: ${response.status} ${response.statusText}`);
 						}
-					});
-					if (response.ok) {
-						user = await response.json();
-						localStorage.setItem("username", JSON.stringify(user.username));
-					} else {
-						done = false;
-
-						console.log(`error: ${response.status} ${response.statusText}`);
+					} catch (error) {
+						console.log("something failed");
+						console.log(error);
 					}
-				} catch (error) {
-					console.log("something failed");
-					console.log(error);
 				}
-				setStore({
-					user: user,
-					done: done
-				});
+				setStore({ token: "" });
+				localStorage.removeItem("token");
+				return false;
 			}
 		}
 	};
