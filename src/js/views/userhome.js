@@ -7,12 +7,7 @@ import { UserCard } from "../component/usercard.js";
 
 export const UserHome = () => {
 	const { store, actions } = useContext(Context);
-	let local_jwt = localStorage.getItem("tokenlogin");
 	const history = useHistory();
-
-	useEffect(() => {
-		actions.fetchGetUser(JSON.parse(local_jwt));
-	}, []);
 
 	return (
 		<div className="h-100 container-fluid d-flex flex-column">
