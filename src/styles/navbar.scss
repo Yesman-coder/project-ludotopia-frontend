@@ -5,6 +5,11 @@
 
 .navbar{
     padding: 0.5rem 0.5rem;
+   
+}
+
+.logo{
+    margin:0.5rem;
 }
 
 .tablet {
@@ -13,10 +18,14 @@
 
 .icon{
     font-size: 2rem;
-    color:white;
+    color:#5EC762;
     &:hover{
     color:gray;
     }
+}
+
+.button-chip{
+    padding: 0%;
 }
 
 .btn-ludos {
@@ -52,12 +61,17 @@ p{
 
 }
 .vertical{
-    width: 4vw;
+    border-right: 1px solid #797B79;
+    width:5vw;
+
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 400px) {
     .vertical {
       width: 12vw;
+    }
+    .logo{
+        margin:0;
     }
   }
 

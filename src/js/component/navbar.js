@@ -18,10 +18,10 @@ export const Navigation = () => {
 				<>
 					<Navbar bg="light" sticky="top">
 						<Navbar.Brand>
-							<a href="/">
+							<a href="/userhome">
 								<img
 									style={{ width: "2rem", height: "2.2rem" }}
-									className="img-fluid rounded d-block"
+									className="logo img-fluid rounded d-block"
 									src={Logo}
 									alt="ludotopy-logo"
 								/>
@@ -30,7 +30,7 @@ export const Navigation = () => {
 						{`${store.user.username}` != "undefined" && <h3>{`${store.user.username}`}</h3>}
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
-							<Nav className="mr-auto">
+							<Nav className="m-auto">
 								<Button className="btn-ludos" variant="success" size="lg" block>
 									700 Lds
 								</Button>
@@ -44,10 +44,9 @@ export const Navigation = () => {
 						<div
 							style={{
 								position: "fixed",
-								height: "100vh",
-								background: "#5EC762"
+								height: "100vh"
 							}}
-							className="vertical nav nav-tabs nav-stacked d-flex flex-column align-items-center"
+							className="vertical nav nav-tabs nav-stacked justify-content-center align-items-center bg-light"
 							id="v-pills-tab"
 							role="tablist"
 							aria-orientation="vertical">
@@ -82,7 +81,7 @@ export const Navigation = () => {
 								<BellFill className="icon" />
 							</a>
 							<a
-								className="nav-link tablet"
+								className="nav-link button-chip"
 								id="v-pills-settings-tab"
 								data-toggle="pill"
 								href="#v-pills-settings"

@@ -16,8 +16,8 @@ export function UserCard({ index, sender, receiver, betTitle, betDesc, ammount, 
 				<h5 className="mr-0">{receiver}</h5>
 			</div>
 			<div className="card-body">
-				<h5 className="card-title">{betTitle}</h5>
-				<p className="card-text text-muted font-weight-light">{betDesc}</p>
+				<h5 className="card-title text-break">{betTitle}</h5>
+				<p className="card-text text-muted font-weight-light text-break">{betDesc}</p>
 				<a href="#" className="btn btn-success">
 					{ammount}
 				</a>

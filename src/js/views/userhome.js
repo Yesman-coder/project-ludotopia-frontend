@@ -16,7 +16,7 @@ export const UserHome = () => {
 
 	return (
 		<div className="h-100 container-fluid d-flex flex-column">
-			<div className="content justify-content-center">
+			<div className="content justify-content-end ml-3">
 				{store.cards.map((newBet, index) => {
 					return (
 						<UserCard
