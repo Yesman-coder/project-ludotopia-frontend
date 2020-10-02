@@ -13,7 +13,7 @@ export const UserHome = () => {
 		<>
 			{store.token != "" ? (
 				<div className="h-100 container-fluid d-flex flex-column">
-					<div className="content justify-content-end ml-3">
+					<div className="cel content justify-content-end">
 						{store.cards.map((newBet, index) => {
 							return (
 								<UserCard

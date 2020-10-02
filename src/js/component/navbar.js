@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Form, Button, Nav, Navbar, NavDropdown, FormControl } from "react-bootstrap";
 import Logo from "../../img/logo.png";
-import Chip from "../../img/chip.png";
 import { Context } from "../store/appContext";
-import { Plus, HouseFill, Search, BellFill, Cash } from "react-bootstrap-icons";
+import { Plus, HouseFill, Search, BellFill, Cash, Bullseye, House } from "react-bootstrap-icons";
 import "../../styles/navbar.scss";
 
 export const Navigation = () => {
@@ -21,7 +20,7 @@ export const Navigation = () => {
 							<a href="/userhome">
 								<img
 									style={{ width: "2rem", height: "2.2rem" }}
-									className="logo img-fluid rounded d-block"
+									className="logo img-fluid rounded d-block ml-4"
 									src={Logo}
 									alt="ludotopy-logo"
 								/>
@@ -31,7 +30,7 @@ export const Navigation = () => {
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="m-auto">
-								<Button className="btn-ludos" variant="success" size="lg" block>
+								<Button className="btn-ludos" variant="success" size="md" block>
 									700 Lds
 								</Button>
 							</Nav>
@@ -40,67 +39,24 @@ export const Navigation = () => {
 							</Form>
 						</Navbar.Collapse>
 					</Navbar>
-					<div className="container-fluid d-flex flex-column p-0">
-						<div
-							style={{
-								position: "fixed",
-								height: "100vh"
-							}}
-							className="vertical nav nav-tabs nav-stacked justify-content-center align-items-center bg-light"
-							id="v-pills-tab"
-							role="tablist"
-							aria-orientation="vertical">
-							<a
-								className="nav-link tablet"
-								id="v-pills-home-tab"
-								data-toggle="pill"
-								href="/userhome"
-								role="tab"
-								aria-controls="v-pills-home"
-								aria-selected="true">
-								<HouseFill className="icon" />
+					<div className="sidebar container-fluid d-flex flex-row p-0 ">
+						<nav className="nav flex-column">
+							<a className="icon nav-link active" href="#">
+								<HouseFill />
 							</a>
-							<a
-								className="nav-link tablet"
-								id="v-pills-profile-tab"
-								data-toggle="pill"
-								href="/search"
-								role="tab"
-								aria-controls="v-pills-profile"
-								aria-selected="false">
-								<Search className="icon" />
+							<a className="icon nav-link" href="#">
+								<Search />
 							</a>
-							<a
-								className="nav-link tablet"
-								id="v-pills-messages-tab"
-								data-toggle="pill"
-								href="#v-pills-messages"
-								role="tab"
-								aria-controls="v-pills-messages"
-								aria-selected="false">
-								<BellFill className="icon" />
+							<a className="icon nav-link" href="#">
+								<BellFill />
 							</a>
-							<a
-								className="nav-link button-chip"
-								id="v-pills-settings-tab"
-								data-toggle="pill"
-								href="#v-pills-settings"
-								role="tab"
-								aria-controls="v-pills-settings"
-								aria-selected="false">
-								<img style={{ width: "2rem", height: "2rem" }} src={Chip} alt="poker-chip" />
+							<a className="icon nav-link" href="#">
+								<Bullseye />
 							</a>
-							<a
-								className="nav-link tablet"
-								id="v-pills-messages-tab"
-								data-toggle="pill"
-								href="#v-pills-messages"
-								role="tab"
-								aria-controls="v-pills-messages"
-								aria-selected="false">
-								<Cash className="icon" />
+							<a className="icon nav-link" href="#">
+								<Cash />
 							</a>
-						</div>
+						</nav>
 					</div>
 				</>
 			)}
