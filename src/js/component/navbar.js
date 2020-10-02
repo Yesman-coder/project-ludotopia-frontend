@@ -11,7 +11,7 @@ export const Navigation = () => {
 	const location = useLocation();
 	return (
 		<>
-			{location.pathname == "/register" || location.pathname == "/login" ? (
+			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/home" ? (
 				""
 			) : (
 				<>
@@ -39,25 +39,6 @@ export const Navigation = () => {
 							</Form>
 						</Navbar.Collapse>
 					</Navbar>
-					<div className="sidebar container-fluid d-flex flex-row p-0 ">
-						<nav className="nav flex-column">
-							<a className="icon nav-link active" href="#">
-								<HouseFill />
-							</a>
-							<a className="icon nav-link" href="#">
-								<Search />
-							</a>
-							<a className="icon nav-link" href="#">
-								<BellFill />
-							</a>
-							<a className="icon nav-link" href="#">
-								<Bullseye />
-							</a>
-							<a className="icon nav-link" href="#">
-								<Cash />
-							</a>
-						</nav>
-					</div>
 				</>
 			)}
 		</>

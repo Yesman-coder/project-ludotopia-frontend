@@ -4,6 +4,7 @@ import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import { useHistory, Redirect } from "react-router-dom";
 import { UserCard } from "../component/usercard.js";
+import { Sidebar } from "../component/sidebar";
 
 export const UserHome = () => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +13,7 @@ export const UserHome = () => {
 	return (
 		<>
 			{store.token != "" ? (
-				<div className="h-100 d-flex flex-column justify-content-end">
+				<div className="h-100 d-flex flex-column  justify-content-center">
 					{store.cards.map((newBet, index) => {
 						return (
 							<UserCard
