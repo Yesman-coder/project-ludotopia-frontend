@@ -12,24 +12,22 @@ export const UserHome = () => {
 	return (
 		<>
 			{store.token != "" ? (
-				<div className="h-100 container-fluid d-flex flex-column">
-					<div className="cel content justify-content-end">
-						{store.cards.map((newBet, index) => {
-							return (
-								<UserCard
-									key={index}
-									index={index}
-									sender={newBet.sender}
-									receiver={newBet.receiver}
-									betTitle={newBet.betTitle}
-									betDesc={newBet.betDesc}
-									ammount={newBet.ammount}
-									emissionDate={newBet.emissionDate}
-									dueDate={newBet.dueDate}
-								/>
-							);
-						})}
-					</div>
+				<div className="h-100 d-flex flex-column justify-content-end">
+					{store.cards.map((newBet, index) => {
+						return (
+							<UserCard
+								key={index}
+								index={index}
+								sender={newBet.sender}
+								receiver={newBet.receiver}
+								betTitle={newBet.betTitle}
+								betDesc={newBet.betDesc}
+								ammount={newBet.ammount}
+								emissionDate={newBet.emissionDate}
+								dueDate={newBet.dueDate}
+							/>
+						);
+					})}
 				</div>
 			) : (
 				<Redirect to="/login" />

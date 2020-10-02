@@ -20,7 +20,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 	let localData = localStorage.getItem("token");
 	return (
-		<div className="d-flex flex-column h-100 overflow-x:hidden">
+		<div className="d-flex flex-column h-100 w-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navigation />
