@@ -14,17 +14,17 @@ export const UserHome = () => {
 			{store.token != "" ? (
 				<div className="h-100 container-fluid d-flex flex-column">
 					<div className="cel content justify-content-end">
-						{store.cards.map((newBet, index) => {
+						{store.user.bets_sent.map((newBet, id) => {
 							return (
 								<UserCard
-									key={index}
-									index={index}
+									key={id}
+									index={id}
 									sender={newBet.sender}
 									receiver={newBet.receiver}
 									betTitle={newBet.betTitle}
 									betDesc={newBet.betDesc}
-									ammount={newBet.ammount}
-									emissionDate={newBet.emissionDate}
+									ludos={newBet.ludos}
+									createDate={newBet.emissionDate}
 									dueDate={newBet.dueDate}
 								/>
 							);

@@ -9,8 +9,8 @@ export function UserCard({ index, sender, receiver, betTitle, betDesc, ammount, 
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 	return (
-		<div className="card text-center column p-3 ml-5 mt-3">
-			<div className="card-header row" id={index}>
+		<div className="card text-center column ml-5 mt-3">
+			<div className="card-header row p-3" id={index}>
 				<h5 className="ml-0">{sender}</h5>
 				<h4 className="m-auto text-muted">VS</h4>
 				<h5 className="mr-0">{receiver}</h5>

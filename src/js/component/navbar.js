@@ -16,16 +16,6 @@ export const Navigation = () => {
 			) : (
 				<>
 					<Navbar bg="light" sticky="top">
-						<Navbar.Brand>
-							<a href="/userhome">
-								<img
-									style={{ width: "2rem", height: "2.2rem" }}
-									className="logo img-fluid rounded d-block ml-4"
-									src={Logo}
-									alt="ludotopy-logo"
-								/>
-							</a>
-						</Navbar.Brand>
 						{`${store.user.username}` != "undefined" && <h3>{`${store.user.username}`}</h3>}
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
@@ -40,6 +30,16 @@ export const Navigation = () => {
 						</Navbar.Collapse>
 					</Navbar>
 					<div className="sidebar container-fluid d-flex flex-row p-0 ">
+						<Navbar.Brand>
+							<a href="/userhome">
+								<img
+									style={{ width: "2rem", height: "2.2rem" }}
+									className="logo img-fluid rounded d-block ml-4"
+									src={Logo}
+									alt="ludotopy-logo"
+								/>
+							</a>
+						</Navbar.Brand>
 						<nav className="nav flex-column">
 							<a className="icon nav-link active" href="#">
 								<HouseFill />
