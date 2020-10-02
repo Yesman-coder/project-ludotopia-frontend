@@ -63,15 +63,22 @@ p{
 .vertical{
     border-right: 1px solid #797B79;
     width:5vw;
+    height:90vh;
 
 }
 
 @media screen and (max-width: 400px) {
     .vertical {
       width: 12vw;
+      height:100vh;
+      padding:1rem;
     }
     .logo{
         margin:0;
+    }
+
+    h3{
+        font-size:1rem;
     }
   }
 

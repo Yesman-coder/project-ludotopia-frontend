@@ -43,8 +43,7 @@ export const Navigation = () => {
 					<div className="container-fluid d-flex flex-column p-0">
 						<div
 							style={{
-								position: "fixed",
-								height: "100vh"
+								position: "fixed"
 							}}
 							className="vertical nav nav-tabs nav-stacked justify-content-center align-items-center bg-light"
 							id="v-pills-tab"

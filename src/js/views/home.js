@@ -11,7 +11,7 @@ export const Home = () => {
 
 	return (
 		<div className="h-100 container-fluid d-flex flex-column p-5">
-			<div className="content justify-content-end ml-3 p-5">
+			<div className="content justify-content-center ml-3 p-5">
 				{`${store.user.username}` != "undefined" && <h3>Hello {`${store.user.username}`}</h3>}
 				<img style={{ width: "12rem", height: "12.5rem" }} src={Logo} />
 			</div>
