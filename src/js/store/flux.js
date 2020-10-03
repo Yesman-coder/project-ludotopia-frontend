@@ -1,32 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-b367df32-32c2-4a07-bcb6-bb809bc8dcc7.ws-us02.gitpod.io";
+	const baseUrl = "https://3000-fbaacd4f-47c8-4839-916a-dcc475cfdc98.ws-us02.gitpod.io";
 	return {
 		store: {
-			bets: [],
-			cards: [
-				{
-					index: 1,
-					sender: "Yesman",
-					receiver: "Boris",
-					betTitle: "Apuesta tu honor",
-					betDesc: "El que no quiera a su mama pierde",
-					ammount: 300,
-					emissionDate: "13/12/2020",
-					dueDate: "13/12/2021"
-				},
-				{
-					index: 2,
-					sender: "Ivan",
-					receiver: "Omar",
-					betTitle: "Apuesta tu ano",
-					betDesc: "El que no quiera a su ano pierde",
-					ammount: 500,
-					emissionDate: "14/02/2021",
-					dueDate: "13/12/2021"
-				}
-			],
-			token: null,
-			user: []
+			user: {},
+			token: null
 		},
 		actions: {
 			logUserOut: () => {
@@ -120,8 +97,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return false;
 			},
 
-			fetchCreateBet: async (betName, description, targetUser, ludos, dueDate) => {
+			fetchCreateBet: async (ludos, name, description, due_date, receiver_name) => {
 				let store = getStore();
+				let userId = store.user.id;
 				try {
 					let response = await fetch(`${baseUrl}/bet`, {
 						method: "POST",
@@ -130,11 +108,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
-							betName,
-							description,
-							targetUser,
 							ludos,
-							dueDate
+							name,
+							description,
+							due_date,
+							userId,
+							receiver_name
 						})
 					});
 					if (response.ok) {
@@ -143,13 +122,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
 				} catch (error) {
-					console.log("something failed");
+					console.log("something failed in bet creation");
 					console.log(error);
 				}
-				setStore({
-					bets: [...store.bets, bets]
-				});
-
 			}
 		}
 	};

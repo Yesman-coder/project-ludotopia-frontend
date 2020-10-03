@@ -7,12 +7,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-<<<<<<< HEAD
-		"start": "webpack-dev-server --config webpack.dev.js --host 127.0.0.1 --port 3000",
-=======
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
 		"local": "webpack-dev-server --config webpack.dev.js --host 127.0.0.1 --port 3000",
->>>>>>> develop
 		"build": "webpack --config webpack.prod.js",
 		"deploy": "node deploy-to-github.js"
 	},
@@ -75,12 +71,9 @@
 		]
 	},
 	"dependencies": {
-<<<<<<< HEAD
+		"@hookform/resolvers": "^0.1.1",
 		"@material-ui/core": "^4.11.0",
 		"@material-ui/icons": "^4.9.1",
-=======
-		"@hookform/resolvers": "^0.1.1",
->>>>>>> develop
 		"bootstrap": "^4.3.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
