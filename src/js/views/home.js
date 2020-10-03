@@ -10,19 +10,11 @@ export const Home = () => {
 	const history = useHistory();
 
 	return (
-		<div className="h-100 container-fluid d-flex flex-column">
-			{store.token != "" ? (
-				<div className="content justify-content-center">
-					{/* CONDITIONAL RENDERING OF THE GREET */}
-					{`${store.user.username}` != "undefined" && <h1>Hello {`${store.user.username}`}</h1>}
-					<img style={{ marginTop: "3rem", width: "12rem", height: "12.5rem" }} src={Logo} />
-					<a href="#" className="btn btn-success mt-5">
-						If you see this green button, bootstrap is working
-					</a>
-				</div>
-			) : (
-				<Redirect to="/login" />
-			)}
+		<div className="h-100 container-fluid d-flex flex-column p-5">
+			<div className="content justify-content-center ml-5 p-5">
+				<h3>Hola! Bienvenido a Ludotopy</h3>
+				<img style={{ width: "12rem", height: "12.5rem" }} src={Logo} />
+			</div>
 		</div>
 	);
 };

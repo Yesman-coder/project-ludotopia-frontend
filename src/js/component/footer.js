@@ -6,7 +6,7 @@ export const Footer = () => {
 	const location = useLocation();
 	return (
 		<>
-			{location.pathname == "/register" || location.pathname == "/login" ? (
+			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/home" ? (
 				<div className="footerimg container-fluid" />
 			) : (
 				""

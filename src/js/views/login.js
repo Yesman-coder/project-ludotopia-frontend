@@ -12,6 +12,11 @@ function Login() {
 	const [password, setPassword] = useState("");
 	const [confirmed, setConfirmed] = useState(true);
 
+	let show = "";
+	if (confirmed == false) {
+		show = "show";
+	}
+
 	return (
 		<>
 			{store.token == "" ? (
@@ -42,12 +47,12 @@ function Login() {
 								/>
 							</Form.Group>
 						</Form>
-						<p className={"error m-1 "}>* Usuario o Contraseña invalido</p>
+						<p className={"error m-1 " + show}>* Usuario o Contraseña invalido</p>
 						<Button
 							onClick={async e => {
 								let success = await actions.fetchLogin(email, password);
 								if (success) {
-									history.push("/");
+									history.push("/userhome");
 								} else {
 									setConfirmed(false);
 								}
@@ -63,7 +68,7 @@ function Login() {
 					</div>
 				</div>
 			) : (
-				<Redirect to="/" />
+				<Redirect to="/userhome" />
 			)}
 		</>
 	);

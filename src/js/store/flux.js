@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-b367df32-32c2-4a07-bcb6-bb809bc8dcc7.ws-us02.gitpod.io";
+	const baseUrl = "http://127.0.0.1:4000";
 	return {
 		store: {
 			cards: [
@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					index: 1,
 					sender: "Yesman",
 					receiver: "Boris",
-					betTitle: "Apuesta tu honor",
+					betTitle: "Apuesto a que maduro no se va",
 					betDesc: "El que no quiera a su mama pierde",
 					ammount: 300,
 					emissionDate: "13/12/2020",
@@ -17,8 +17,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					index: 2,
 					sender: "Ivan",
 					receiver: "Omar",
-					betTitle: "Apuesta tu ano",
-					betDesc: "El que no quiera a su ano pierde",
+					betTitle: "Apuesto a que soy el mejor",
+					betDesc: "El que no quiera a su apa pierde",
+					ammount: 500,
+					emissionDate: "14/02/2021",
+					dueDate: "13/12/2021"
+				},
+				{
+					index: 3,
+					sender: "Perro",
+					receiver: "Gato",
+					betTitle: "Apuesto a que soy el mejor",
+					betDesc: "El que no quiera a su apa pierde",
 					ammount: 500,
 					emissionDate: "14/02/2021",
 					dueDate: "13/12/2021"
