@@ -13,6 +13,7 @@ import { Footer } from "./component/footer";
 import { Register } from "./views/register";
 import Login from "./views/login";
 import { Sidebar } from "./component/sidebar";
+import { CreateBet } from "./views/CreateBet";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +38,9 @@ const Layout = () => {
 								</Route>
 								<Route exact path="/">
 									<Home />
+								</Route>
+								<Route exact path="/create-bet">
+									<CreateBet />
 								</Route>
 								<Route exact path="/register">
 									<Register />
