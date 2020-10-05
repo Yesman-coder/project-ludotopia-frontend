@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "http://127.0.0.1:4000";
+	const baseUrl = "https://3000-fbaacd4f-47c8-4839-916a-dcc475cfdc98.ws-us02.gitpod.io";
 	//Recordar verificar URL
 	return {
 		store: {
