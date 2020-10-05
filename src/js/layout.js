@@ -4,7 +4,6 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import { UserHome } from "./views/userhome";
-import CreateBet from "./views/createBet";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 

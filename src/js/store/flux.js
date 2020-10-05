@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "http://127.0.0.1:4000";
+	const baseUrl = "https://3000-fbaacd4f-47c8-4839-916a-dcc475cfdc98.ws-us02.gitpod.io";
 	//Recordar verificar URL
 	return {
 		store: {
@@ -51,16 +51,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(`${baseUrl}/register`, {
 						method: "POST",
+						mode: "no-cors",
 						headers: {
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
-							email,
-							name,
-							last_name,
-							phone,
-							username,
-							password
+							email: email,
+							name: name,
+							last_name: last_name,
+							phone: phone,
+							username: username,
+							password: password
 						})
 					});
 					if (response.ok) {
@@ -80,6 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(`${baseUrl}/login`, {
 						method: "POST",
+						mode: "no-cors",
 						headers: {
 							"Content-Type": "application/JSON"
 						},
@@ -109,6 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(`this is token befor get ${token}`);
 						let response = await fetch(`${baseUrl}/user`, {
 							method: "GET",
+							mode: "no-cors",
 							headers: {
 								Authorization: `Bearer ${token}`,
 								"Content-Type": "application/json"
@@ -137,17 +140,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(`${baseUrl}/bet`, {
 						method: "POST",
+						mode: "no-cors",
 						headers: {
 							Authorization: `Bearer ${store.token}`,
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
-							ludos,
-							name,
-							description,
-							due_date,
-							userId,
-							receiver_name
+							ludos: ludos,
+							name: name,
+							description: description,
+							due_date: due_date,
+							userId: userId,
+							receiver_name: receiver_name
 						})
 					});
 					if (response.ok) {
