@@ -56,12 +56,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
-							email: email,
-							name: name,
-							last_name: last_name,
-							phone: phone,
-							username: username,
-							password: password
+							email,
+							name,
+							last_name,
+							phone,
+							username,
+							password
 						})
 					});
 					if (response.ok) {
@@ -146,12 +146,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
-							ludos: ludos,
-							name: name,
-							description: description,
-							due_date: due_date,
-							userId: userId,
-							receiver_name: receiver_name
+							ludos,
+							name,
+							description,
+							due_date,
+							userId,
+							receiver_name
 						})
 					});
 					if (response.ok) {
