@@ -51,7 +51,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(`${baseUrl}/register`, {
 						method: "POST",
-						mode: "no-cors",
 						headers: {
 							"Content-Type": "application/JSON"
 						},
@@ -81,7 +80,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					let response = await fetch(`${baseUrl}/login`, {
 						method: "POST",
-						mode: "no-cors",
 						headers: {
 							"Content-Type": "application/JSON"
 						},
@@ -111,7 +109,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(`this is token befor get ${token}`);
 						let response = await fetch(`${baseUrl}/user`, {
 							method: "GET",
-							mode: "no-cors",
 							headers: {
 								Authorization: `Bearer ${token}`,
 								"Content-Type": "application/json"
@@ -136,13 +133,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchCreateBet: async (ludos, name, description, due_date, receiver_name) => {
 				let store = getStore();
-				let userId = store.user.id;
+				let sender_id = store.user.id;
 				try {
 					let response = await fetch(`${baseUrl}/bet`, {
 						method: "POST",
-						mode: "no-cors",
 						headers: {
-							Authorization: `Bearer ${store.token}`,
+							// Authorization: `Bearer ${store.token}`,
+							//HACE FALTA EN EL BACKEND EL JWT REQUIRED
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
@@ -150,7 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							name,
 							description,
 							due_date,
-							userId,
+							sender_id,
 							receiver_name
 						})
 					});

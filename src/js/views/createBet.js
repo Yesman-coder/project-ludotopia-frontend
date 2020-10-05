@@ -13,18 +13,6 @@ import * as yup from "yup";
 
 //npm install @material-ui/core
 
-const schema = yup.object().shape({
-	ludos: yup
-		.number()
-		.required()
-		.positive()
-		.integer(),
-	name: yup.string().required(),
-	description: yup.string().required(),
-	due_date: yup.string().required(),
-	receiver_name: yup.string().required()
-});
-
 const useStyles = makeStyles(theme => ({
 	container: {
 		display: "flex",
@@ -36,6 +24,18 @@ const useStyles = makeStyles(theme => ({
 		width: 250
 	}
 }));
+
+const schema = yup.object().shape({
+	ludos: yup
+		.number()
+		.required()
+		.positive()
+		.integer(),
+	name: yup.string().required(),
+	description: yup.string().required(),
+	due_date: yup.string().required(),
+	receiver_name: yup.string().required()
+});
 
 export const CreateBet = () => {
 	const { store, actions } = useContext(Context);
@@ -79,13 +79,13 @@ export const CreateBet = () => {
 							Nombre de la apuesta
 						</label>
 						<input
-							name="betName"
+							name="name"
 							ref={register()}
 							className="input form-control"
 							type="text"
 							id="exampleFormControlInput1"
 						/>
-						{errors.email && <p className="text-danger">Por favor introduzca un nombre de apuesta!</p>}
+						{errors.name && <p className="text-danger">Por favor introduzca un nombre de apuesta!</p>}
 
 						<label className="label" htmlFor="exampleInputEmail1">
 							Descripcion
@@ -97,7 +97,7 @@ export const CreateBet = () => {
 							type="text"
 							id="exampleFormControlInput1"
 						/>
-						{errors.userName && <p className="text-danger">Por favor introduzca una descripcion</p>}
+						{errors.description && <p className="text-danger">Por favor introduzca una descripcion</p>}
 
 						<label className="label" htmlFor="exampleInputEmail1">
 							Enviar a:
@@ -110,7 +110,7 @@ export const CreateBet = () => {
 							id="exampleFormControlInput1"
 						/>
 
-						{errors.name && <p className="text-danger">Por favor introduzca un receptor!</p>}
+						{errors.receiver_name && <p className="text-danger">Por favor introduzca un receptor!</p>}
 
 						<label className="label" htmlFor="exampleInputEmail1">
 							Ludos a apostar:
@@ -122,7 +122,7 @@ export const CreateBet = () => {
 							type="text"
 							id="exampleFormControlInput1"
 						/>
-						{errors.lastname && <p className="text-danger">Por favor introduzca un monto!</p>}
+						{errors.ludos && <p className="text-danger">Por favor introduzca un monto!</p>}
 
 						<label className="label" htmlFor="exampleInputEmail1">
 							Fecha de expiracion
@@ -145,14 +145,16 @@ export const CreateBet = () => {
 							}}
 							ref={register()}
 						/> */}
-						{errors.phone && <p className="text-danger">Por favor introduzca una fecha de expiracion!</p>}
+						{errors.due_date && (
+							<p className="text-danger">Por favor introduzca una fecha de expiracion!</p>
+						)}
 
-						<Button className="button" variant="success" type="submit">
+						<Button className="button mt-2" variant="success" type="submit">
 							Enviar
 						</Button>
 						<div className="container-fluid d-flex justify-content-center">
 							<p className="">
-								Ya tienes una cuenta <span onClick={e => history.push(`/login`)}>Inicia Sesion</span>
+								<span onClick={e => history.push(`/userhome`)}>Cancelar</span>
 							</p>
 						</div>
 					</div>
