@@ -68,7 +68,7 @@ function Login() {
 					</div>
 				</div>
 			) : (
-				<Redirect to="/" />
+				<Redirect to="/userhome" />
 			)}
 		</>
 	);

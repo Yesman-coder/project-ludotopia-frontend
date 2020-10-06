@@ -1,0 +1,80 @@
+import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
+import { TrashFill } from "react-bootstrap-icons";
+import { Button, Modal } from "react-bootstrap";
+import "../../styles/usercard.scss";
+
+export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
+	const history = useHistory();
+	const { store, actions } = useContext(Context);
+
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	return (
+		<div className="card text-center column p-3 d-flex">
+			<div className="card-header row m-0" id={index}>
+				<h3 className="ml-0">{sender}</h3>
+				<h4 className="m-auto text-muted">VS</h4>
+				<h3 className="mr-0">{receiver}</h3>
+			</div>
+			<div className="card-body">
+				<h5 className="card-title text-break">{betTitle}</h5>
+				<p className="card-text text-muted font-weight-light text-break">{betDesc}</p>
+				<a href="#" className="btn btn-success">
+					{`${ammount} Lds`}
+				</a>
+
+				<Button className="m-3" variant="outline-success" onClick={handleShow}>
+					<TrashFill />
+				</Button>
+
+				<p className="mt-3">Emission Date {emissionDate}</p>
+				<p className="mt-3">Due Date {dueDate}</p>
+
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>¿Estás seguro?</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>Seguro quieres borrar esta apuesta</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							No
+						</Button>
+
+						{/* EN ESTE BOTON DE ABAJO HAY QUE AGREGAR EL CAMBIO DE ESTADO PARA EL SOFT DELETE DE LA APUESTA EN LUGAR DEL HANDLECLOSE*/}
+						<Button variant="success" onClick={handleClose}>
+							Si
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			</div>
+			<div className="card-footer justifiy-content-space-around">
+				<Button className="m-3" variant="outline-success">
+					Aceptar
+				</Button>
+				<Button className="m-3" variant="outline-success">
+					Rechazar
+				</Button>
+				<Button className="m-3" variant="outline-success">
+					Editar esta apuesta
+				</Button>
+			</div>
+		</div>
+	);
+}
+
+BetCard.propTypes = {
+	index: PropTypes.number,
+	sender: PropTypes.string,
+	receiver: PropTypes.string,
+	betTitle: PropTypes.string,
+	betDesc: PropTypes.string,
+	ammount: PropTypes.number,
+	emissionDate: PropTypes.string,
+	dueDate: PropTypes.string
+};

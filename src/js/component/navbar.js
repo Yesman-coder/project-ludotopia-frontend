@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Form, Button, Nav, Navbar, NavDropdown, FormControl } from "react-bootstrap";
+import { Form, Button, Nav, Navbar } from "react-bootstrap";
 import Logo from "../../img/logo.png";
-import Chip from "../../img/chip.png";
 import { Context } from "../store/appContext";
-import { Plus, HouseFill, Search, BellFill, Cash } from "react-bootstrap-icons";
+import { Plus } from "react-bootstrap-icons";
 import "../../styles/navbar.scss";
 
 export const Navigation = () => {
@@ -12,7 +11,7 @@ export const Navigation = () => {
 	const location = useLocation();
 	return (
 		<>
-			{location.pathname == "/register" || location.pathname == "/login" ? (
+			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/home" ? (
 				""
 			) : (
 				<>
@@ -21,18 +20,25 @@ export const Navigation = () => {
 							<a href="/userhome">
 								<img
 									style={{ width: "2rem", height: "2.2rem" }}
-									className="logo img-fluid rounded d-block"
+									className="logo img-fluid rounded d-block ml-4"
 									src={Logo}
 									alt="ludotopy-logo"
 								/>
 							</a>
 						</Navbar.Brand>
-						{`${store.user.username}` != "undefined" && <h3>{`${store.user.username}`}</h3>}
+						{`${store.user.username}` != "undefined" && <h4>{`${store.user.username}`}</h4>}
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="m-auto">
-								<Button className="btn-ludos" variant="success" size="lg" block>
-									700 Lds
+								<Button className="btn-ludos" variant="success" size="sm" block>
+									{`${store.user.ludos} Lds`}
+								</Button>
+								<Button
+									className="btn-ludos btn-sm"
+									// size="sm"
+									variant="outline-success"
+									onClick={actions.logUserOut}>
+									Log out
 								</Button>
 							</Nav>
 							<Form inline>
@@ -40,67 +46,6 @@ export const Navigation = () => {
 							</Form>
 						</Navbar.Collapse>
 					</Navbar>
-					<div className="container-fluid d-flex flex-column p-0">
-						<div
-							style={{
-								position: "fixed"
-							}}
-							className="vertical nav nav-tabs nav-stacked justify-content-center align-items-center bg-light"
-							id="v-pills-tab"
-							role="tablist"
-							aria-orientation="vertical">
-							<a
-								className="nav-link tablet"
-								id="v-pills-home-tab"
-								data-toggle="pill"
-								href="/userhome"
-								role="tab"
-								aria-controls="v-pills-home"
-								aria-selected="true">
-								<HouseFill className="icon" />
-							</a>
-							<a
-								className="nav-link tablet"
-								id="v-pills-profile-tab"
-								data-toggle="pill"
-								href="/search"
-								role="tab"
-								aria-controls="v-pills-profile"
-								aria-selected="false">
-								<Search className="icon" />
-							</a>
-							<a
-								className="nav-link tablet"
-								id="v-pills-messages-tab"
-								data-toggle="pill"
-								href="#v-pills-messages"
-								role="tab"
-								aria-controls="v-pills-messages"
-								aria-selected="false">
-								<BellFill className="icon" />
-							</a>
-							<a
-								className="nav-link button-chip"
-								id="v-pills-settings-tab"
-								data-toggle="pill"
-								href="#v-pills-settings"
-								role="tab"
-								aria-controls="v-pills-settings"
-								aria-selected="false">
-								<img style={{ width: "2rem", height: "2rem" }} src={Chip} alt="poker-chip" />
-							</a>
-							<a
-								className="nav-link tablet"
-								id="v-pills-messages-tab"
-								data-toggle="pill"
-								href="#v-pills-messages"
-								role="tab"
-								aria-controls="v-pills-messages"
-								aria-selected="false">
-								<Cash className="icon" />
-							</a>
-						</div>
-					</div>
 				</>
 			)}
 		</>
