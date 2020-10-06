@@ -151,6 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.ok) {
 						let bets = await response.json();
+						return true;
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
@@ -158,6 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("something failed in bet creation");
 					console.log(error);
 				}
+				return false;
 			}
 		}
 	};
