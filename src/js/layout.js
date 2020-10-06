@@ -4,14 +4,15 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import { UserHome } from "./views/userhome";
-import { Demo } from "./views/demo";
+import CreateBet from "./views/createBet";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navigation } from "./component/navbar";
 import { Footer } from "./component/footer";
-import Register from "./views/register";
+import { Register } from "./views/register";
 import Login from "./views/login";
+import { Sidebar } from "./component/sidebar";
 
 //create your first component
 const Layout = () => {
@@ -20,33 +21,38 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 	let localData = localStorage.getItem("token");
 	return (
-		<div className="d-flex flex-column h-100 overflow-x:hidden">
+		<div className="d-flex flex-column h-100 w-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navigation />
-					<Switch>
-						{/* <Route exact path="/register">
+					<div className="row w-100 h-100">
+						<Sidebar />
+						<div className="col">
+							<Switch>
+								{/* <Route exact path="/register">
 							<Register />
 						</Route> */}
-						<Route exact path="/login">
-							<Login />
-						</Route>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/register">
-							<Demo />
-						</Route>
-						<Route exact path="/single">
-							<Single />
-						</Route>
-						<Route exact path="/userhome">
-							<UserHome />
-						</Route>
-						<Route>
-							<h1 style={{ marginLeft: "4rem" }}>Not found!</h1>
-						</Route>
-					</Switch>
+								<Route exact path="/login">
+									<Login />
+								</Route>
+								<Route exact path="/">
+									<Home />
+								</Route>
+								<Route exact path="/register">
+									<Register />
+								</Route>
+								<Route exact path="/single">
+									<Single />
+								</Route>
+								<Route exact path="/userhome">
+									<UserHome />
+								</Route>
+								<Route>
+									<h1 style={{ marginLeft: "4rem" }}>Not found!</h1>
+								</Route>
+							</Switch>
+						</div>
+					</div>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
