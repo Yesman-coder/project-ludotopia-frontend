@@ -5,7 +5,7 @@ import "../../styles/register.scss";
 import { Form, Button } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { yupResolver } from "@hookform/resolvers";
@@ -41,7 +41,7 @@ export const CreateBet = () => {
 	const { store, actions } = useContext(Context);
 	const [confirmed, setConfirmed] = useState(true);
 	const history = useHistory();
-	const { register, errors, handleSubmit } = useForm({
+	const { register, errors, handleSubmit, control } = useForm({
 		resolver: yupResolver(schema)
 	});
 	const classes = useStyles();
@@ -124,30 +124,35 @@ export const CreateBet = () => {
 						/>
 						{errors.ludos && <p className="text-danger">Por favor introduzca un monto!</p>}
 
-						<label className="label" htmlFor="exampleInputEmail1">
-							Fecha de expiracion
-						</label>
-						<input
-							name="due_date"
-							ref={register()}
-							className="input form-control"
-							type="text"
-							id="exampleFormControlInput1"
-						/>
-						{/* <TextField
-							id="datetime-local"
-							name="due_date"
-							type="datetime-local"
-							defaultValue="2017-05-24T10:30"
-							className={classes.textField}
-							InputLabelProps={{
-								shrink: true
-							}}
-							ref={register()}
-						/> */}
-						{errors.due_date && (
-							<p className="text-danger">Por favor introduzca una fecha de expiracion!</p>
-						)}
+						<Form.Group controlId="formGroupPassword">
+							<Form.Label className="label">Fecha de expiracion </Form.Label>
+							{/* <form className={classes.container} noValidate> */}
+							<Controller
+								as={TextField}
+								control={control}
+								className={classes.textField}
+								name="due_date"
+								id="datetime-local"
+								type="datetime-local"
+								defaultValue="2017-05-24T10:30"
+								InputLabelProps={{ shrink: true }}
+							/>
+							{/* <TextField
+									id="datetime-local"
+									type="datetime-local"
+									name="due_date"
+									defaultValue="2017-05-24T10:30"
+									className={classes.textField}
+									InputLabelProps={{
+										shrink: true
+									}}
+									inputRef={register()}
+								/> */}
+							{errors.due_date && (
+								<p className="text-danger">Por favor introduzca una fecha de expiracion!</p>
+							)}
+							{/* </form> */}
+						</Form.Group>
 
 						<Button className="button mt-2" variant="success" type="submit">
 							Enviar

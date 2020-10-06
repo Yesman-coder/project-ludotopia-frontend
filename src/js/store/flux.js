@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-fbaacd4f-47c8-4839-916a-dcc475cfdc98.ws-us02.gitpod.io";
+	const baseUrl = "https://4000-ab61ad10-fa5d-4065-beed-ee5d4dea65fe.ws-us02.gitpod.io";
 	//Recordar verificar URL
 	return {
 		store: {
@@ -106,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fetchGetUser: async token => {
 				if (token) {
 					try {
-						console.log(`this is token befor get ${token}`);
+						console.log(`this is token before get ${token}`);
 						let response = await fetch(`${baseUrl}/user`, {
 							method: "GET",
 							headers: {
@@ -138,8 +138,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(`${baseUrl}/bet`, {
 						method: "POST",
 						headers: {
-							// Authorization: `Bearer ${store.token}`,
-							//HACE FALTA EN EL BACKEND EL JWT REQUIRED
+							Authorization: `Bearer ${store.token}`,
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
