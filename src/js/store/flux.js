@@ -1,5 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "http://127.0.0.1:4000";
+	const baseUrl = "https://3000-fbaacd4f-47c8-4839-916a-dcc475cfdc98.ws-us02.gitpod.io";
+	//Recordar verificar URL
 	return {
 		store: {
 			// cards: [
@@ -36,6 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// ],
 			token: null,
 			user: []
+			//Cambiar user a objeto?
 		},
 		actions: {
 			logUserOut: () => {
@@ -127,6 +129,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: "" });
 				localStorage.removeItem("token");
 				return false;
+			},
+
+			fetchCreateBet: async (ludos, name, description, due_date, receiver_name) => {
+				let store = getStore();
+				let userId = store.user.id;
+				try {
+					let response = await fetch(`${baseUrl}/bet`, {
+						method: "POST",
+						headers: {
+							Authorization: `Bearer ${store.token}`,
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							ludos,
+							name,
+							description,
+							due_date,
+							userId,
+							receiver_name
+						})
+					});
+					if (response.ok) {
+						let bets = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
 			}
 		}
 	};

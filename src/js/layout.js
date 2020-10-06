@@ -4,7 +4,6 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
 import { UserHome } from "./views/userhome";
-import CreateBet from "./views/createBet";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
@@ -13,6 +12,7 @@ import { Footer } from "./component/footer";
 import { Register } from "./views/register";
 import Login from "./views/login";
 import { Sidebar } from "./component/sidebar";
+import { CreateBet } from "./views/CreateBet";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +37,9 @@ const Layout = () => {
 								</Route>
 								<Route exact path="/">
 									<Home />
+								</Route>
+								<Route exact path="/create-bet">
+									<CreateBet />
 								</Route>
 								<Route exact path="/register">
 									<Register />
