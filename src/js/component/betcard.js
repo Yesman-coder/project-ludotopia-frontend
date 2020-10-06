@@ -17,10 +17,10 @@ export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, e
 
 	return (
 		<div className="card text-center column p-3 d-flex">
-			<div className="card-header row m-0" id={index}>
-				<h3 className="ml-0">{sender}</h3>
-				<h4 className="m-auto text-muted">VS</h4>
-				<h3 className="mr-0">{receiver}</h3>
+			<div className="card-header row m-0 d-flex justify-content-around" id={index}>
+				<h3>{sender}</h3>
+				<h4 className="text-muted">VS</h4>
+				<h3>{receiver}</h3>
 			</div>
 			<div className="card-body">
 				<h5 className="card-title text-break">{betTitle}</h5>

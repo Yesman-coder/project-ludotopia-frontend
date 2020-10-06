@@ -35,7 +35,6 @@ export const Navigation = () => {
 								</Button>
 								<Button
 									className="btn-ludos btn-sm"
-									// size="sm"
 									variant="outline-success"
 									onClick={actions.logUserOut}>
 									Log out
