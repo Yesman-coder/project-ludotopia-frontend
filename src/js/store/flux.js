@@ -37,7 +37,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			token: null,
 			user: []
-			//Cambiar user a objeto?
 		},
 		actions: {
 			logUserOut: () => {

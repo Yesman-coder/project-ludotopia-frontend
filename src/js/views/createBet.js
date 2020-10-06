@@ -138,16 +138,16 @@ export const CreateBet = () => {
 								InputLabelProps={{ shrink: true }}
 							/>
 							{/* <TextField
-									id="datetime-local"
-									type="datetime-local"
-									name="due_date"
-									defaultValue="2017-05-24T10:30"
-									className={classes.textField}
-									InputLabelProps={{
-										shrink: true
-									}}
-									inputRef={register()}
-								/> */}
+								id="datetime-local"
+								type="datetime-local"
+								name="due_date"
+								defaultValue="2017-05-24T10:30"
+								className={classes.textField}
+								InputLabelProps={{
+									shrink: true
+								}}
+								inputRef={register()}
+							/> */}
 							{errors.due_date && (
 								<p className="text-danger">Por favor introduzca una fecha de expiracion!</p>
 							)}
