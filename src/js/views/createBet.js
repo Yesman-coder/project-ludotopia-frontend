@@ -55,6 +55,7 @@ export const CreateBet = () => {
 			data.receiver_name
 		);
 		if (success) {
+			console.log("history");
 			history.push("/userhome");
 		} else {
 			setConfirmed(false);
