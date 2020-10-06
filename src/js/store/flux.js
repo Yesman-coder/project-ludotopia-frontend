@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-fbaacd4f-47c8-4839-916a-dcc475cfdc98.ws-us02.gitpod.io";
+	const baseUrl = "https://4000-ab61ad10-fa5d-4065-beed-ee5d4dea65fe.ws-us02.gitpod.io";
 	//Recordar verificar URL
 	return {
 		store: {
@@ -37,7 +37,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// ],
 			token: null,
 			user: []
-			//Cambiar user a objeto?
 		},
 		actions: {
 			logUserOut: () => {
@@ -106,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fetchGetUser: async token => {
 				if (token) {
 					try {
-						console.log(`this is token befor get ${token}`);
+						console.log(`this is token before get ${token}`);
 						let response = await fetch(`${baseUrl}/user`, {
 							method: "GET",
 							headers: {
@@ -133,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchCreateBet: async (ludos, name, description, due_date, receiver_name) => {
 				let store = getStore();
-				let userId = store.user.id;
+				let sender_id = store.user.id;
 				try {
 					let response = await fetch(`${baseUrl}/bet`, {
 						method: "POST",
@@ -146,7 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							name,
 							description,
 							due_date,
-							userId,
+							sender_id,
 							receiver_name
 						})
 					});

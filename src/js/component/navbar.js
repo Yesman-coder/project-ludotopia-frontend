@@ -42,7 +42,9 @@ export const Navigation = () => {
 								</Button>
 							</Nav>
 							<Form inline>
-								<Plus style={{ cursor: "pointer" }} className="plus" />
+								<a href="/create-bet">
+									<Plus style={{ cursor: "pointer" }} className="plus" />
+								</a>
 							</Form>
 						</Navbar.Collapse>
 					</Navbar>
