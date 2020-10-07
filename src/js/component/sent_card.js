@@ -5,9 +5,9 @@ import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
 import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
-import "../../styles/usercard.scss";
+// import "../../styles/ucard.scss";
 
-export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
+export function SentCard({ index, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -29,10 +29,6 @@ export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, e
 					{`${ammount} Lds`}
 				</a>
 
-				<Button className="m-3" variant="outline-success" onClick={handleShow}>
-					<TrashFill />
-				</Button>
-
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
 
@@ -40,13 +36,13 @@ export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, e
 					<Modal.Header closeButton>
 						<Modal.Title>¿Estás seguro?</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>Seguro quieres borrar esta apuesta</Modal.Body>
+					<Modal.Body>Seguro quieres cancelar esta apuesta</Modal.Body>
 					<Modal.Footer>
 						<Button variant="secondary" onClick={handleClose}>
 							No
 						</Button>
-
-						{/* EN ESTE BOTON DE ABAJO HAY QUE AGREGAR EL CAMBIO DE ESTADO PARA EL SOFT DELETE DE LA APUESTA EN LUGAR DEL HANDLECLOSE*/}
+						EN ESTE BOTON DE ABAJO HAY QUE AGREGAR EL CAMBIO DE ESTADO PARA EL SOFT DELETE DE LA APUESTA EN
+						LUGAR DEL HANDLECLOSE
 						<Button variant="success" onClick={handleClose}>
 							Si
 						</Button>
@@ -54,21 +50,21 @@ export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, e
 				</Modal>
 			</div>
 			<div className="card-footer justifiy-content-space-around">
-				<Button className="m-3" variant="outline-success">
+				{/* <Button className="m-3" variant="outline-success">
 					Aceptar
 				</Button>
 				<Button className="m-3" variant="outline-success">
 					Rechazar
-				</Button>
-				<Button className="m-3" variant="outline-success">
-					Editar esta apuesta
+				</Button> */}
+				<Button className="m-3" variant="outline-success" onClick={handleShow}>
+					Cancelar Envio
 				</Button>
 			</div>
 		</div>
 	);
 }
 
-BetCard.propTypes = {
+SentCard.propTypes = {
 	index: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,
