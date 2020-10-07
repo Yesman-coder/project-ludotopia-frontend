@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from "react";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import { useHistory, Redirect } from "react-router-dom";
-import { BetCard } from "../component/betcard.js";
+import { ReceivedCard } from "../component/received_card.js";
+import { SentCard } from "../component/sent_card.js";
 
 export const UserHome = () => {
 	const { store, actions } = useContext(Context);
@@ -16,7 +17,7 @@ export const UserHome = () => {
 						<h1 className="m-3">Apuestas Recibidas</h1>
 						{store.user.bets_received.map((newBet, index) => {
 							return (
-								<BetCard
+								<ReceivedCard
 									key={index}
 									index={index}
 									id={newBet.id}
@@ -35,7 +36,7 @@ export const UserHome = () => {
 						<h1 className="m-3">Apuestas Enviadas</h1>
 						{store.user.bets_sent.map((newBet, index) => {
 							return (
-								<BetCard
+								<SentCard
 									key={index}
 									index={index}
 									sender={newBet.sender}
