@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Form, Button, Nav, Navbar, NavDropdown, FormControl } from "react-bootstrap";
 import Logo from "../../img/logo.png";
 import { Context } from "../store/appContext";
 import { Plus, HouseFill, Search, BellFill, Cash, Bullseye, House } from "react-bootstrap-icons";

@@ -10,12 +10,8 @@
 
 
 .sidebar {
-    // position:fixed;
-    // height: 100vh;
-    // padding: 0.5rem 0.3rem;
-    // width: 7vw;
+
     border-right: 1px solid #797B79;
-    // margin-top: 4rem;
     
 }
 
@@ -29,8 +25,9 @@
 }
 
 .btn-ludos {
+    color:white;
     border-radius: 20px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 800;
 }
 
@@ -40,25 +37,5 @@
 }
 
 
-// @media screen and (max-width: 400px) {
-//     .sidebar {
-//       width: 20vw;
-//       margin-left:2rem;
-//     }
-    
-//   }
 
-//   @media screen and (min-width: 1100px) {
-//     .sidebar {
-//       width: 5vw;
-//     }
-    
-//   }
-//   @media screen and (min-width: 1250px) {
-//     .sidebar {
-//       width: 4vw;
-//     }
-    
-//   }
- 
 

@@ -1,5 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://4000-ab61ad10-fa5d-4065-beed-ee5d4dea65fe.ws-us02.gitpod.io";
+	//const baseUrl = "http://127.0.0.1:4000";
+	const baseUrl = "https://3000-a36fb042-3935-4d02-805d-4fb354c87a20.ws-us02.gitpod.io/";
 	//Recordar verificar URL
 	return {
 		store: {
@@ -101,6 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchCreateBet: async (ludos, name, description, due_date, receiver_name) => {
 				let store = getStore();
+				let actions = getActions();
 				let sender_id = store.user.id;
 				try {
 					let response = await fetch(`${baseUrl}/bet`, {
@@ -130,37 +132,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				return false;
 			},
-			fetchEditState: async (state, senderWiner, receiverWiner) => {
-				let store = getStore();
+
+			fetchUpdateBet: async (bet_id, state, status, winner_sender, winner_receiver) => {
 				try {
-					let response = await fetch(`${baseUrl}/bet/${store.editBet.id}`, {
+					let response = await fetch(`${baseUrl}/bet/${bet_id}`, {
 						method: "PATCH",
 						headers: {
-							Authorization: `Bearer ${store.token}`,
 							"Content-Type": "application/JSON"
 						},
 						body: JSON.stringify({
 							state,
-							senderWiner,
-							receiverWiner
+							status,
+							winner_sender,
+							winner_receiver
 						})
 					});
 					if (response.ok) {
-						let bets = await response.json();
 						return true;
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);
 					}
 				} catch (error) {
-					console.log("something failed in bet patch");
+					console.log("something failed in bet creation");
 					console.log(error);
 				}
 				return false;
-			},
-			setEditBet: bet => {
-				setStore({
-					editBet: bet
-				});
 			}
 		}
 	};

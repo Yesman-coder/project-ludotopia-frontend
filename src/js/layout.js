@@ -12,7 +12,7 @@ import { Footer } from "./component/footer";
 import { Register } from "./views/register";
 import Login from "./views/login";
 import { Sidebar } from "./component/sidebar";
-import { CreateBet } from "./views/CreateBet";
+import { CreateBet } from "./views/createBet";
 
 //create your first component
 const Layout = () => {
