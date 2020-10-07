@@ -20,6 +20,7 @@ export const UserHome = () => {
 								<ReceivedCard
 									key={index}
 									index={index}
+									id={newBet.id}
 									sender={newBet.sender}
 									receiver={newBet.receiver}
 									betTitle={newBet.name}
