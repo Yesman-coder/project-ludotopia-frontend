@@ -7,7 +7,7 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 import "../../styles/received_card.scss";
 
-export function ReceivedCard({ index, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
+export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -17,7 +17,7 @@ export function ReceivedCard({ index, sender, receiver, betTitle, betDesc, ammou
 
 	return (
 		<div className="card text-center column p-3 d-flex">
-			<div className="card-header row m-0 d-flex justify-content-around" id={index}>
+			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>
 				<h3>{receiver}</h3>
@@ -52,7 +52,7 @@ export function ReceivedCard({ index, sender, receiver, betTitle, betDesc, ammou
 }
 
 ReceivedCard.propTypes = {
-	index: PropTypes.number,
+	id: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,
 	betTitle: PropTypes.string,

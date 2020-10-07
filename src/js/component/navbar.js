@@ -42,9 +42,9 @@ export const Navigation = () => {
 									</Button>
 								</li>
 								<li className="nav-item">
-									<a href="/create-bet">
+									<Link to="/createBet">
 										<Plus style={{ cursor: "pointer" }} className="plus" />
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
