@@ -3,40 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	//Recordar verificar URL
 	return {
 		store: {
-			// cards: [
-			// 	{
-			// 		index: 1,
-			// 		sender: "Yesman",
-			// 		receiver: "Boris",
-			// 		betTitle: "Apuesto a que maduro no se va",
-			// 		betDesc: "El que no quiera a su mama pierde",
-			// 		ammount: 300,
-			// 		emissionDate: "13/12/2020",
-			// 		dueDate: "13/12/2021"
-			// 	},
-			// 	{
-			// 		index: 2,
-			// 		sender: "Ivan",
-			// 		receiver: "Omar",
-			// 		betTitle: "Apuesto a que soy el mejor",
-			// 		betDesc: "El que no quiera a su apa pierde",
-			// 		ammount: 500,
-			// 		emissionDate: "14/02/2021",
-			// 		dueDate: "13/12/2021"
-			// 	},
-			// 	{
-			// 		index: 3,
-			// 		sender: "Perro",
-			// 		receiver: "Gato",
-			// 		betTitle: "Apuesto a que soy el mejor",
-			// 		betDesc: "El que no quiera a su apa pierde",
-			// 		ammount: 500,
-			// 		emissionDate: "14/02/2021",
-			// 		dueDate: "13/12/2021"
-			// 	}
-			// ],
 			token: null,
-			user: []
+			user: [],
+			editBet: {}
 		},
 		actions: {
 			logUserOut: () => {
@@ -160,6 +129,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 				return false;
+			},
+			fetchEditState: async (state, senderWiner, receiverWiner) => {
+				let store = getStore();
+				try {
+					let response = await fetch(`${baseUrl}/bet/${store.editBet.id}`, {
+						method: "PATCH",
+						headers: {
+							Authorization: `Bearer ${store.token}`,
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							state,
+							senderWiner,
+							receiverWiner
+						})
+					});
+					if (response.ok) {
+						let bets = await response.json();
+						return true;
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet patch");
+					console.log(error);
+				}
+				return false;
+			},
+			setEditBet: bet => {
+				setStore({
+					editBet: bet
+				});
 			}
 		}
 	};
