@@ -7,7 +7,7 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 import "../../styles/usercard.scss";
 
-export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
+export function BetCard({ index, id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -54,7 +54,13 @@ export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, e
 				</Modal>
 			</div>
 			<div className="card-footer justifiy-content-space-around">
-				<Button className="m-3" variant="outline-success">
+				<Button
+					onClick={e => {
+						actions.fetchUpdateBet(id, "aceptado", true, "", "");
+						location.reload();
+					}}
+					className="m-3"
+					variant="outline-success">
 					Aceptar
 				</Button>
 				<Button className="m-3" variant="outline-success">
@@ -70,6 +76,7 @@ export function BetCard({ index, sender, receiver, betTitle, betDesc, ammount, e
 
 BetCard.propTypes = {
 	index: PropTypes.number,
+	id: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,
 	betTitle: PropTypes.string,

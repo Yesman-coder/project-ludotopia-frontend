@@ -19,6 +19,7 @@ export const UserHome = () => {
 								<BetCard
 									key={index}
 									index={index}
+									id={newBet.id}
 									sender={newBet.sender}
 									receiver={newBet.receiver}
 									betTitle={newBet.name}
