@@ -23,7 +23,7 @@ export const UserHome = () => {
 						<h1 className="m-3">Apuestas Recibidas</h1>
 						{store.user.bets_received.map((newBet, index) => {
 							console.log(newBet.state);
-							if ((newBet.state == "enviado")) {
+							if (newBet.state == "enviado") {
 								return (
 									<ReceivedCard
 										key={index}
@@ -37,7 +37,7 @@ export const UserHome = () => {
 										dueDate={newBet.due_date}
 									/>
 								);
-							} else if ((newBet.state == "aceptado")) {
+							} else if (newBet.state == "aceptado") {
 								return (
 									<ReceiverBetInProgress
 										key={index}
@@ -57,7 +57,7 @@ export const UserHome = () => {
 					<div className="d-flex flex-column mt-4">
 						<h1 className="m-3">Apuestas Enviadas</h1>
 						{store.user.bets_sent.map((newBet, index) => {
-							if ((newBet.state == "enviado")) {
+							if (newBet.state == "enviado") {
 								return (
 									<SentCard
 										key={index}
@@ -71,9 +71,9 @@ export const UserHome = () => {
 										dueDate={newBet.due_date}
 									/>
 								);
-							} else if ((newBet.state == "aceptado")) {
+							} else if (newBet.state == "aceptado") {
 								return (
-									<ReceiverBetInProgress
+									<SenderBetInProgress
 										key={index}
 										id={newBet.id}
 										sender={newBet.sender}
