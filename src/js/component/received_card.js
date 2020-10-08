@@ -37,7 +37,6 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 				<Button
 					onClick={e => {
 						actions.fetchUpdateBet(id, "aceptado", true, "", "");
-						location.reload();
 					}}
 					className="m-3"
 					variant="outline-success">

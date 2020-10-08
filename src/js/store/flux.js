@@ -1,6 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	//const baseUrl = "http://127.0.0.1:4000";
-	const baseUrl = "http://0.0.0.0:4000";
+	const baseUrl = "https://4000-ab61ad10-fa5d-4065-beed-ee5d4dea65fe.ws-us02.gitpod.io";
 	//Recordar verificar URL
 	return {
 		store: {
@@ -136,6 +136,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fetchUpdateBet: async (bet_id, state, status, winner_sender, winner_receiver) => {
 				try {
+					const actions = getActions();
+					const store = getStore();
 					let response = await fetch(`${baseUrl}/bet/${bet_id}`, {
 						method: "PATCH",
 						headers: {
@@ -149,6 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					});
 					if (response.ok) {
+						actions.fetchGetUser(store.token);
 						return true;
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);
