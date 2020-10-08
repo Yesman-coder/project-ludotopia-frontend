@@ -6,12 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			user: [],
-<<<<<<< HEAD
-			editBet: {}
-=======
 			allUsers: [],
 			userId: []
->>>>>>> develop
 		},
 		actions: {
 			logUserOut: () => {
