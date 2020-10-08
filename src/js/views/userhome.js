@@ -20,7 +20,6 @@ export const UserHome = () => {
 	return (
 		<>
 			{store.token != "" ? (
-
 				<Tabs defaultActiveKey="received" transition={false} id="noanim-tab-example">
 					<Tab eventKey="received" title="Apuestas Recibidas">
 						<div className="d-flex flex-column mt-4">
@@ -130,7 +129,6 @@ export const UserHome = () => {
 						</div>
 					</Tab>
 				</Tabs>
-
 			) : (
 				// {store.token != "" ? (
 				// 	<div className="h-100">
