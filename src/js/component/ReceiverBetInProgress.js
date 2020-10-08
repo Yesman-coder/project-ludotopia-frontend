@@ -7,7 +7,17 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 import "../../styles/received_card.scss";
 
-export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
+export function ReceiverBetInProgress({
+	id,
+	sender,
+	receiver,
+	betTitle,
+	betDesc,
+	ammount,
+	emissionDate,
+	dueDate,
+	status
+}) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -31,33 +41,42 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
-				{`${store.user.bets_received.status}` && <div className="circle bg-secondary ml-auto" />}
+				{`${store.user.bets_received.status}` && <div className="circle bg-warning ml-auto" />}
 			</div>
 			<div className="card-footer justifiy-content-space-around">
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBet(id, "aceptado", true, "", "");
+						actions.fetchUpdateBet(id, "aceptado", true, ``, `${sender}`);
 						location.reload();
 					}}
 					className="m-3"
 					variant="outline-success">
-					Aceptar
+					{`${sender} es el ganador`}
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBet(id, "rechazado", false, "", "");
+						actions.fetchUpdateBet(id, "empate", true, "", "");
 						location.reload();
 					}}
 					className="m-3"
-					variant="outline-danger">
-					Rechazar
+					variant="outline-primary">
+					Empate
+				</Button>
+				<Button
+					onClick={e => {
+						actions.fetchUpdateBet(id, "aceptado", true, ``, `${receiver}`);
+						location.reload();
+					}}
+					className="m-3"
+					variant="outline-success">
+					{`${receiver} es el ganador`}
 				</Button>
 			</div>
 		</div>
 	);
 }
 
-ReceivedCard.propTypes = {
+ReceiverBetInProgress.propTypes = {
 	id: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,
