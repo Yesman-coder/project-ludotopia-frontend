@@ -5,6 +5,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import { ReceivedCard } from "../component/received_card.js";
 import { SenderBetInProgress } from "../component/SenderBetInProgress.js";
 import { ReceiverBetInProgress } from "../component/ReceiverBetInProgress.js";
+import { CanceledBet } from "../component/CanceledBet.js";
 import { SentCard } from "../component/sent_card.js";
 
 export const UserHome = () => {
@@ -51,6 +52,20 @@ export const UserHome = () => {
 										dueDate={newBet.due_date}
 									/>
 								);
+							} else if (newBet.state == "rechazado") {
+								return (
+									<CanceledBet
+										key={index}
+										id={newBet.id}
+										sender={newBet.sender}
+										receiver={newBet.receiver}
+										betTitle={newBet.name}
+										betDesc={newBet.description}
+										ammount={newBet.ludos}
+										emissionDate={newBet.create_date}
+										dueDate={newBet.due_date}
+									/>
+								);
 							}
 						})}
 					</div>
@@ -61,7 +76,7 @@ export const UserHome = () => {
 								return (
 									<SentCard
 										key={index}
-										index={index}
+										id={newBet.id}
 										sender={newBet.sender}
 										receiver={newBet.receiver}
 										betTitle={newBet.name}
@@ -74,6 +89,20 @@ export const UserHome = () => {
 							} else if (newBet.state == "aceptado") {
 								return (
 									<SenderBetInProgress
+										key={index}
+										id={newBet.id}
+										sender={newBet.sender}
+										receiver={newBet.receiver}
+										betTitle={newBet.name}
+										betDesc={newBet.description}
+										ammount={newBet.ludos}
+										emissionDate={newBet.create_date}
+										dueDate={newBet.due_date}
+									/>
+								);
+							} else if (newBet.state == "rechazado") {
+								return (
+									<CanceledBet
 										key={index}
 										id={newBet.id}
 										sender={newBet.sender}
