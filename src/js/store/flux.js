@@ -1,13 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	//const baseUrl = "http://127.0.0.1:4000";
-	const baseUrl = "https://4000-ab61ad10-fa5d-4065-beed-ee5d4dea65fe.ws-us02.gitpod.io";
+	//const baseUrl = "http://0.0.0.0:4000";
+	const baseUrl = "http://0.0.0.0:4000";
 	//Recordar verificar URL
 	return {
 		store: {
 			token: null,
 			user: [],
 			allUsers: [],
-			userId: []
+			userId: [],
+			allBets: [],
+			betId: []
 		},
 		actions: {
 			logUserOut: () => {
@@ -198,6 +201,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 						userId = await response.json();
 						setStore({ userId: userId });
 						console.log(`dentro del fetch userId ${id}`);
+						return true;
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				return false;
+			},
+			fetchAllBets: async () => {
+				let allBets = [];
+				try {
+					let response = await fetch(`${baseUrl}/bets`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON"
+						}
+					});
+					if (response.ok) {
+						allBets = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				setStore({
+					allBets: allBets,
+					betId: []
+				});
+			},
+			fetchBetId: async id => {
+				let betId = [];
+				try {
+					let response = await fetch(`${baseUrl}/bet/${id}`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON"
+						}
+					});
+					if (response.ok) {
+						betId = await response.json();
+						setStore({ betId: betId });
 						return true;
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);

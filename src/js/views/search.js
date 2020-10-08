@@ -10,10 +10,14 @@ function Search() {
 
 	useEffect(() => {
 		actions.fetchAllUsers();
+		actions.fetchAllBets();
 	}, []);
 
 	const filteredUser = store.allUsers.filter(user => {
 		return user.username.toLowerCase().includes(search.toLocaleLowerCase());
+	});
+	const filteredBets = store.allBets.filter(bet => {
+		return bet.name.toLowerCase().includes(search.toLocaleLowerCase());
 	});
 
 	return (
@@ -32,6 +36,15 @@ function Search() {
 							<div className="p-2 m-2 border" key={user.id}>
 								<Link className="text-decoration-none text-dark" to={`/user/${user.id}`}>
 									<p className="ml-5 mt-1">{`${user.username}`}</p>
+								</Link>
+							</div>
+						);
+					})}
+					{filteredBets.map(bet => {
+						return (
+							<div className="p-2 m-2 border" key={bet.id}>
+								<Link className="text-decoration-none text-dark" to={`/bet/${bet.id}`}>
+									<p className="ml-5 mt-1">{`${bet.name}`}</p>
 								</Link>
 							</div>
 						);

@@ -8,7 +8,6 @@ function UserDetails() {
 	const { id } = useParams();
 
 	useEffect(() => {
-		console.log(id);
 		actions.fetchUserId(id);
 	}, []);
 
@@ -88,7 +87,7 @@ function UserDetails() {
 					<p>{`apuestas enviadas: ${totalBetsSent()}`}</p>
 					<p>{`apuestas recibidas: ${totalBetsReceived()}`}</p>
 					<p>{`apuestas aceptadas: ${totalBetsAcepted()}`}</p>
-					<p>{`pocentaje de apuestas aceptadas: ${porcentajeAcepted()}%`}</p>
+					<p>{`porcentaje de apuestas aceptadas: ${porcentajeAcepted()}%`}</p>
 					{store.userId.bets_received != undefined
 						? store.userId.bets_received.map(newBet => {
 								return (
