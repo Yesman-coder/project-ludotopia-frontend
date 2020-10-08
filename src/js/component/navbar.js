@@ -24,20 +24,15 @@ export const Navigation = () => {
 								alt="ludotopy-logo"
 							/>
 						</Link>
-						{`${store.user.username}` != "undefined" && <h3>{`${store.user.username}`}</h3>}
+						{`${store.user.username}` != "undefined" && <h4>{`${store.user.username}`}</h4>}
 
 						<div className="navbar">
 							<ul className="navbar-nav">
 								<li className="nav-item">
-									<Button className="btn-ludos p-2" variant="success" size="sm" block>
-										{`${store.user.ludos} Lds`}
-									</Button>
+									<Button variant="success">{`${store.user.ludos} Lds`}</Button>
 								</li>
 								<li className="nav-item">
-									<Button
-										className="btn-ludos btn-sm nav-link"
-										variant="outline-success"
-										onClick={actions.logUserOut}>
+									<Button variant="outline-success" onClick={actions.logUserOut}>
 										Log out
 									</Button>
 								</li>
