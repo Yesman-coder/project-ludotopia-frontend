@@ -4,40 +4,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	//Recordar verificar URL
 	return {
 		store: {
-			// cards: [
-			// 	{
-			// 		index: 1,
-			// 		sender: "Yesman",
-			// 		receiver: "Boris",
-			// 		betTitle: "Apuesto a que maduro no se va",
-			// 		betDesc: "El que no quiera a su mama pierde",
-			// 		ammount: 300,
-			// 		emissionDate: "13/12/2020",
-			// 		dueDate: "13/12/2021"
-			// 	},
-			// 	{
-			// 		index: 2,
-			// 		sender: "Ivan",
-			// 		receiver: "Omar",
-			// 		betTitle: "Apuesto a que soy el mejor",
-			// 		betDesc: "El que no quiera a su apa pierde",
-			// 		ammount: 500,
-			// 		emissionDate: "14/02/2021",
-			// 		dueDate: "13/12/2021"
-			// 	},
-			// 	{
-			// 		index: 3,
-			// 		sender: "Perro",
-			// 		receiver: "Gato",
-			// 		betTitle: "Apuesto a que soy el mejor",
-			// 		betDesc: "El que no quiera a su apa pierde",
-			// 		ammount: 500,
-			// 		emissionDate: "14/02/2021",
-			// 		dueDate: "13/12/2021"
-			// 	}
-			// ],
 			token: null,
-			user: []
+			user: [],
+			allUsers: [],
+			userId: []
 		},
 		actions: {
 			logUserOut: () => {
@@ -179,6 +149,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					});
 					if (response.ok) {
+						return true;
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				return false;
+			},
+			fetchAllUsers: async () => {
+				let allUsers = [];
+				try {
+					let response = await fetch(`${baseUrl}/users`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON"
+						}
+					});
+					if (response.ok) {
+						allUsers = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				setStore({
+					allUsers: allUsers,
+					userId: []
+				});
+			},
+			fetchUserId: async id => {
+				let userId = [];
+				try {
+					let response = await fetch(`${baseUrl}/user/${id}`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON"
+						}
+					});
+					if (response.ok) {
+						userId = await response.json();
+						setStore({ userId: userId });
+						console.log(`dentro del fetch userId ${id}`);
 						return true;
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);

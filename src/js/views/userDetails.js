@@ -1,0 +1,128 @@
+import React, { useContext, useState, useEffect } from "react";
+import { Context } from "../store/appContext";
+import { UserCard } from "../component/users_card";
+import { useParams } from "react-router-dom";
+
+function UserDetails() {
+	const { store, actions } = useContext(Context);
+	const { id } = useParams();
+
+	useEffect(() => {
+		console.log(id);
+		actions.fetchUserId(id);
+	}, []);
+
+	function totalBets() {
+		let bets = 0;
+		if (store.userId.bets_received != undefined) {
+			bets += store.userId.bets_received.length;
+		}
+		if (store.userId.bets_sent != undefined) {
+			bets += store.userId.bets_sent.length;
+		}
+		return bets;
+	}
+	function totalBetsAcepted() {
+		let bets = 0;
+		if (store.userId.bets_received != undefined) {
+			store.userId.bets_received.map(newBet => {
+				if (newBet.state == "aceptado") {
+					bets += 1;
+				}
+			});
+		}
+		if (store.userId.bets_sent != undefined) {
+			store.userId.bets_sent.map(newBet => {
+				if (newBet.state == "aceptado") {
+					bets += 1;
+				}
+			});
+		}
+		return bets;
+	}
+	function porcentajeAcepted() {
+		let bets = 0;
+		let totalbets = 0;
+		if (store.userId.bets_received != undefined) {
+			totalbets += store.userId.bets_received.length;
+			store.userId.bets_received.map(newBet => {
+				if (newBet.state == "aceptado") {
+					bets += 1;
+				}
+			});
+		}
+		if (store.userId.bets_sent != undefined) {
+			totalbets += store.userId.bets_sent.length;
+			store.userId.bets_sent.map(newBet => {
+				if (newBet.state == "aceptado") {
+					bets += 1;
+				}
+			});
+		}
+		let numero = bets / totalbets;
+		numero = numero * 100;
+		return Math.floor(numero);
+	}
+	function totalBetsSent() {
+		let bets = 0;
+		if (store.userId.bets_sent != undefined) {
+			bets += store.userId.bets_sent.length;
+		}
+		return bets;
+	}
+	function totalBetsReceived() {
+		let bets = 0;
+		if (store.userId.bets_received != undefined) {
+			bets += store.userId.bets_received.length;
+		}
+		return bets;
+	}
+
+	return (
+		<>
+			<h1 className="m-5">{store.userId.username}</h1>
+			<p>{`apuestas en total: ${totalBets()}`}</p>
+			<p>{`apuestas enviadas: ${totalBetsSent()}`}</p>
+			<p>{`apuestas recibidas: ${totalBetsReceived()}`}</p>
+			<p>{`apuestas aceptadas: ${totalBetsAcepted()}`}</p>
+			<p>{`pocentaje de apuestas aceptadas: ${porcentajeAcepted()}%`}</p>
+			{store.userId.bets_received != undefined
+				? store.userId.bets_received.map(newBet => {
+						return (
+							<UserCard
+								key={newBet.id}
+								id={newBet.id}
+								sender={newBet.sender}
+								receiver={newBet.receiver}
+								betTitle={newBet.name}
+								betDesc={newBet.description}
+								ammount={newBet.ludos}
+								emissionDate={newBet.create_date}
+								dueDate={newBet.due_date}
+								state={newBet.state}
+							/>
+						);
+				  })
+				: ""}
+			{store.userId.bets_sent != undefined
+				? store.userId.bets_sent.map(newBet => {
+						return (
+							<UserCard
+								key={newBet.id}
+								id={newBet.id}
+								sender={newBet.sender}
+								receiver={newBet.receiver}
+								betTitle={newBet.name}
+								betDesc={newBet.description}
+								ammount={newBet.ludos}
+								emissionDate={newBet.create_date}
+								dueDate={newBet.due_date}
+								state={newBet.state}
+							/>
+						);
+				  })
+				: ""}
+		</>
+	);
+}
+export default UserDetails;
