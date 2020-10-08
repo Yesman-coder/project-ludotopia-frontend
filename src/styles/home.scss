@@ -1,3 +1,11 @@
 .contenido{
     margin: auto;
 }
+
+a{
+    font-size:1.3rem;
+    color:#5EC762;
+    &:hover{
+        color:gray;
+        }
+}
