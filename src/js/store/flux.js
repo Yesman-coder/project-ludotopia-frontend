@@ -6,7 +6,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			user: [],
+<<<<<<< HEAD
 			editBet: {}
+=======
+			allUsers: [],
+			userId: []
+>>>>>>> develop
 		},
 		actions: {
 			logUserOut: () => {
@@ -148,6 +153,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					});
 					if (response.ok) {
+						return true;
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				return false;
+			},
+			fetchAllUsers: async () => {
+				let allUsers = [];
+				try {
+					let response = await fetch(`${baseUrl}/users`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON"
+						}
+					});
+					if (response.ok) {
+						allUsers = await response.json();
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				setStore({
+					allUsers: allUsers,
+					userId: []
+				});
+			},
+			fetchUserId: async id => {
+				let userId = [];
+				try {
+					let response = await fetch(`${baseUrl}/user/${id}`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON"
+						}
+					});
+					if (response.ok) {
+						userId = await response.json();
+						setStore({ userId: userId });
+						console.log(`dentro del fetch userId ${id}`);
 						return true;
 					} else {
 						console.log(`error: ${response.status} ${response.statusText}`);

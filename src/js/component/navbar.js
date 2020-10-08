@@ -16,14 +16,14 @@ export const Navigation = () => {
 			) : (
 				<>
 					<nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between" sticky="top">
-						<a href="/userhome">
+						<Link to="/userhome">
 							<img
 								style={{ width: "2rem", height: "2.2rem" }}
 								className="logo img-fluid rounded d-block ml-4"
 								src={Logo}
 								alt="ludotopy-logo"
 							/>
-						</a>
+						</Link>
 						{`${store.user.username}` != "undefined" && <h3>{`${store.user.username}`}</h3>}
 
 						<div className="navbar">

@@ -11,8 +11,10 @@ import { Navigation } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Register } from "./views/register";
 import Login from "./views/login";
+import Search from "./views/search";
 import { Sidebar } from "./component/sidebar";
 import { CreateBet } from "./views/createBet";
+import UserDetails from "./views/userDetails";
 
 //create your first component
 const Layout = () => {
@@ -34,6 +36,12 @@ const Layout = () => {
 						</Route> */}
 								<Route exact path="/login">
 									<Login />
+								</Route>
+								<Route exact path="/search">
+									<Search />
+								</Route>
+								<Route path="/user/:id">
+									<UserDetails />
 								</Route>
 								<Route exact path="/">
 									<Home />

@@ -15,17 +15,14 @@ export const Sidebar = () => {
 			) : (
 				<div className="sidebar col-3 col-md-2 col-lg-1 p-0 ">
 					<nav className="nav flex-column w-100 text-center pl-3">
-						<a className="icon nav-link active" href="#">
-							<HouseFill />
-						</a>
-						<a className="icon nav-link" href="#">
+						<Link className="icon nav-link" to="/userhome">
+							<Bullseye />
+						</Link>
+						<Link className="icon nav-link" to="/search">
 							<Search />
-						</a>
+						</Link>
 						<a className="icon nav-link" href="#">
 							<BellFill />
-						</a>
-						<a className="icon nav-link" href="#">
-							<Bullseye />
 						</a>
 						<a className="icon nav-link" href="#">
 							<Cash />
