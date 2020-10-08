@@ -1,6 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	//const baseUrl = "http://127.0.0.1:4000";
-	const baseUrl = "http://0.0.0.0:4000";
+	const baseUrl = "http://127.0.0.1:4000";
+	// const baseUrl = "http://0.0.0.0:4000";
 	//Recordar verificar URL
 	return {
 		store: {
