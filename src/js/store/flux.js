@@ -133,34 +133,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				return false;
 			},
-			// fetchUpdateBet: async (bet_id, state, status, winner_sender, winner_receiver) => {
-			// 	try {
-			// 		const actions = getActions();
-			// 		const store = getStore();
-			// 		let response = await fetch(`${baseUrl}/bet/${bet_id}`, {
-			// 			method: "PATCH",
-			// 			headers: {
-			// 				"Content-Type": "application/JSON"
-			// 			},
-			// 			body: JSON.stringify({
-			// 				state,
-			// 				status,
-			// 				winner_sender,
-			// 				winner_receiver
-			// 			})
-			// 		});
-			// 		if (response.ok) {
-			// 			actions.fetchGetUser(store.token);
-			// 			return true;
-			// 		} else {
-			// 			console.log(`error: ${response.status} ${response.statusText}`);
-			// 		}
-			// 	} catch (error) {
-			// 		console.log("something failed in bet creation");
-			// 		console.log(error);
-			// 	}
-			// 	return false;
-			// },
+			fetchUpdateBet: async (bet_id, state, status, winner_sender, winner_receiver) => {
+				try {
+					const actions = getActions();
+					const store = getStore();
+					let response = await fetch(`${baseUrl}/bet/${bet_id}`, {
+						method: "PATCH",
+						headers: {
+							"Content-Type": "application/JSON"
+						},
+						body: JSON.stringify({
+							state,
+							status,
+							winner_sender,
+							winner_receiver
+						})
+					});
+					if (response.ok) {
+						actions.fetchGetUser(store.token);
+						return true;
+					} else {
+						console.log(`error: ${response.status} ${response.statusText}`);
+					}
+				} catch (error) {
+					console.log("something failed in bet creation");
+					console.log(error);
+				}
+				return false;
+			},
 			fetchUpdateBetSender: async (bet_id, state, status, winner_sender) => {
 				try {
 					const actions = getActions();

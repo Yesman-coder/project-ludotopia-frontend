@@ -46,7 +46,7 @@ export function ReceiverBetInProgress({
 			<div className="card-footer justifiy-content-space-around">
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetReceiver(id, "aceptado", true, `${sender}`);
+						actions.fetchUpdateBetReceiver(id, "deciding", true, `${sender}`);
 					}}
 					className="m-3"
 					variant="outline-success">
@@ -54,7 +54,7 @@ export function ReceiverBetInProgress({
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetReceiver(id, "empate", true, "");
+						actions.fetchUpdateBetReceiver(id, "deciding", true, "empate");
 					}}
 					className="m-3"
 					variant="outline-primary">
@@ -62,7 +62,7 @@ export function ReceiverBetInProgress({
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetReceiver(id, "aceptado", true, `${receiver}`);
+						actions.fetchUpdateBetReceiver(id, "deciding", true, `${receiver}`);
 					}}
 					className="m-3"
 					variant="outline-success">

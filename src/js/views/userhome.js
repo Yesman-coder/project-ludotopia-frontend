@@ -37,7 +37,7 @@ export const UserHome = () => {
 										dueDate={newBet.due_date}
 									/>
 								);
-							} else if (newBet.state == "aceptado") {
+							} else if (newBet.state == "aceptado" || newBet.state == "deciding") {
 								return (
 									<ReceiverBetInProgress
 										key={index}
@@ -71,7 +71,7 @@ export const UserHome = () => {
 										dueDate={newBet.due_date}
 									/>
 								);
-							} else if (newBet.state == "aceptado") {
+							} else if (newBet.state == "aceptado" || newBet.state == "deciding") {
 								return (
 									<SenderBetInProgress
 										key={index}

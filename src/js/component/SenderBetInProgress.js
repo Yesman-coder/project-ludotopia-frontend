@@ -46,7 +46,7 @@ export function SenderBetInProgress({
 			<div className="card-footer justifiy-content-space-around">
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetSender(id, "aceptado", true, `${sender}`);
+						actions.fetchUpdateBetSender(id, "deciding", true, `${sender}`);
 					}}
 					className="m-3"
 					variant="outline-success">
@@ -54,7 +54,7 @@ export function SenderBetInProgress({
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetSender(id, "empate", true, "");
+						actions.fetchUpdateBetSender(id, "deciding", true, "empate");
 					}}
 					className="m-3"
 					variant="outline-primary">
@@ -62,7 +62,7 @@ export function SenderBetInProgress({
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetSender(id, "aceptado", true, `${receiver}`);
+						actions.fetchUpdateBetSender(id, "deciding", true, `${receiver}`);
 					}}
 					className="m-3"
 					variant="outline-success">
