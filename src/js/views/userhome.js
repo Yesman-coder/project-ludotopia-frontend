@@ -3,6 +3,8 @@ import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import { useHistory, Redirect } from "react-router-dom";
 import { ReceivedCard } from "../component/received_card.js";
+import { SenderBetInProgress } from "../component/SenderBetInProgress.js";
+import { ReceiverBetInProgress } from "../component/ReceiverBetInProgress.js";
 import { SentCard } from "../component/sent_card.js";
 
 export const UserHome = () => {
@@ -21,9 +23,23 @@ export const UserHome = () => {
 						<h1 className="m-3">Apuestas Recibidas</h1>
 						{store.user.bets_received.map((newBet, index) => {
 							console.log(newBet.state);
-							if (newBet.state != "aceptado") {
+							if (newBet.state == "enviado") {
 								return (
 									<ReceivedCard
+										key={index}
+										id={newBet.id}
+										sender={newBet.sender}
+										receiver={newBet.receiver}
+										betTitle={newBet.name}
+										betDesc={newBet.description}
+										ammount={newBet.ludos}
+										emissionDate={newBet.create_date}
+										dueDate={newBet.due_date}
+									/>
+								);
+							} else if (newBet.state == "aceptado") {
+								return (
+									<ReceiverBetInProgress
 										key={index}
 										id={newBet.id}
 										sender={newBet.sender}
@@ -41,11 +57,25 @@ export const UserHome = () => {
 					<div className="d-flex flex-column mt-4">
 						<h1 className="m-3">Apuestas Enviadas</h1>
 						{store.user.bets_sent.map((newBet, index) => {
-							if (newBet.state != "aceptado") {
+							if (newBet.state == "enviado") {
 								return (
 									<SentCard
 										key={index}
 										index={index}
+										sender={newBet.sender}
+										receiver={newBet.receiver}
+										betTitle={newBet.name}
+										betDesc={newBet.description}
+										ammount={newBet.ludos}
+										emissionDate={newBet.create_date}
+										dueDate={newBet.due_date}
+									/>
+								);
+							} else if (newBet.state == "aceptado") {
+								return (
+									<SenderBetInProgress
+										key={index}
+										id={newBet.id}
 										sender={newBet.sender}
 										receiver={newBet.receiver}
 										betTitle={newBet.name}

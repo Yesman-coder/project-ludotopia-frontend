@@ -32,7 +32,7 @@ export function SentCard({ index, sender, receiver, betTitle, betDesc, ammount, 
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
 
-				{`${store.user.bets_received.status}` && <div className="circle bg-warning ml-auto" />}
+				{`${store.user.bets_received.status}` && <div className="circle bg-secondary ml-auto" />}
 
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>

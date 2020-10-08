@@ -127,7 +127,6 @@ export const CreateBet = () => {
 
 						<Form.Group controlId="formGroupPassword">
 							<Form.Label className="label">Fecha de expiracion </Form.Label>
-							{/* <form className={classes.container} noValidate> */}
 							<Controller
 								as={TextField}
 								control={control}
@@ -138,21 +137,9 @@ export const CreateBet = () => {
 								defaultValue="2017-05-24T10:30"
 								InputLabelProps={{ shrink: true }}
 							/>
-							{/* <TextField
-								id="datetime-local"
-								type="datetime-local"
-								name="due_date"
-								defaultValue="2017-05-24T10:30"
-								className={classes.textField}
-								InputLabelProps={{
-									shrink: true
-								}}
-								inputRef={register()}
-							/> */}
 							{errors.due_date && (
 								<p className="text-danger">Por favor introduzca una fecha de expiracion!</p>
 							)}
-							{/* </form> */}
 						</Form.Group>
 
 						<Button className="button mt-2" variant="success" type="submit">
