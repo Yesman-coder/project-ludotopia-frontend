@@ -28,8 +28,20 @@ function BetDetails() {
 					<p className="mt-3">Emission Date {store.betId.create_date}</p>
 					<p className="mt-3">Due Date {store.betId.due_date}</p>
 
+					{store.betId.state == "ganador" && <p>{`Ganó: ${store.betId.winner_sender}`}</p>}
+					{store.betId.state == "ganador" &&
+						store.betId.winner_sender != store.betId.sender && <p>{`Perdió: ${store.betId.sender}`}</p>}
+					{store.betId.state == "ganador" && store.betId.winner_sender == store.betId.sender ? (
+						<p>{`Perdió: ${store.betId.receiver}`}</p>
+					) : (
+						""
+					)}
+					{store.betId.state == "ganador" && <div className="circle bg-success ml-auto" />}
+					{store.betId.state == "deciding" && <div className="circle bg-warning ml-auto" />}
 					{store.betId.state == "aceptado" && <div className="circle bg-warning ml-auto" />}
 					{store.betId.state == "enviado" && <div className="circle bg-secondary ml-auto" />}
+					{store.betId.state == "empate" && <div className="circle bg-primary ml-auto" />}
+					{store.betId.state == "desacuerdo" && <div className="circle bg-dark ml-auto" />}
 				</div>
 			</div>
 		</>

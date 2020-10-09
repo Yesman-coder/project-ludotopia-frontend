@@ -70,8 +70,7 @@ export const UserHome = () => {
 						<div className="d-flex flex-column mt-4">
 							<h1 className="m-3">Apuestas Activas</h1>
 							{store.user.bets_received.map((newBet, index) => {
-								console.log(newBet.state);
-								if (newBet.state == "aceptado") {
+								if (newBet.state == "aceptado" || newBet.state == "deciding") {
 									return (
 										<>
 											<ReceiverBetInProgress
@@ -84,7 +83,17 @@ export const UserHome = () => {
 												ammount={newBet.ludos}
 												emissionDate={newBet.create_date}
 												dueDate={newBet.due_date}
+												winner_sender={newBet.winner_sender}
+												winner_receiver={newBet.winner_receiver}
 											/>
+										</>
+									);
+								}
+							})}
+							{store.user.bets_sent.map((newBet, index) => {
+								if (newBet.state == "aceptado" || newBet.state == "deciding") {
+									return (
+										<>
 											<SenderBetInProgress
 												key={index}
 												id={newBet.id}
@@ -95,6 +104,8 @@ export const UserHome = () => {
 												ammount={newBet.ludos}
 												emissionDate={newBet.create_date}
 												dueDate={newBet.due_date}
+												winner_sender={newBet.winner_sender}
+												winner_receiver={newBet.winner_receiver}
 											/>
 										</>
 									);
@@ -107,7 +118,7 @@ export const UserHome = () => {
 							<h1 className="m-3">Apuestas Concluidas</h1>
 							{store.user.bets_sent.map((newBet, index) => {
 								if (
-									newBet.state == "empatado" ||
+									newBet.state == "empate" ||
 									newBet.state == "ganador" ||
 									newBet.state == "desacuerdo"
 								) {
@@ -122,13 +133,16 @@ export const UserHome = () => {
 											ammount={newBet.ludos}
 											emissionDate={newBet.create_date}
 											dueDate={newBet.due_date}
+											state={newBet.state}
+											winner_sender={newBet.winner_sender}
+											winner_receiver={newBet.winner_receiver}
 										/>
 									);
 								}
 							})}
 							{store.user.bets_received.map((newBet, index) => {
 								if (
-									newBet.state == "empatado" ||
+									newBet.state == "empate" ||
 									newBet.state == "ganador" ||
 									newBet.state == "desacuerdo"
 								) {
@@ -143,6 +157,9 @@ export const UserHome = () => {
 											ammount={newBet.ludos}
 											emissionDate={newBet.create_date}
 											dueDate={newBet.due_date}
+											state={newBet.state}
+											winner_sender={newBet.winner_sender}
+											winner_receiver={newBet.winner_receiver}
 										/>
 									);
 								}

@@ -16,14 +16,23 @@ export function ReceiverBetInProgress({
 	ammount,
 	emissionDate,
 	dueDate,
-	status
+	winner_sender,
+	winner_receiver
 }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	let esperando = "";
+	let responde = "";
+	let decidido = "";
+
+	if (winner_receiver != "") {
+		esperando = "esperandoShow";
+		decidido = "decidido";
+	}
+	if (winner_sender != "") {
+		responde = "respondeShow";
+	}
 
 	return (
 		<div className="card text-center column p-3 d-flex">
@@ -43,10 +52,10 @@ export function ReceiverBetInProgress({
 				<p className="mt-3">Due Date {dueDate}</p>
 				{`${store.user.bets_received.status}` && <div className="circle bg-warning ml-auto" />}
 			</div>
-			<div className="card-footer justifiy-content-space-around">
+			<div className={"card-footer justifiy-content-space-around " + decidido}>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetReceiver(id, "aceptado", true, `${sender}`);
+						actions.fetchUpdateBetReceiver(id, "deciding", true, `${sender}`);
 					}}
 					className="m-3"
 					variant="outline-success">
@@ -54,7 +63,7 @@ export function ReceiverBetInProgress({
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetReceiver(id, "empate", true, "");
+						actions.fetchUpdateBetReceiver(id, "deciding", true, "empate");
 					}}
 					className="m-3"
 					variant="outline-primary">
@@ -62,12 +71,16 @@ export function ReceiverBetInProgress({
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBetReceiver(id, "aceptado", true, `${receiver}`);
+						actions.fetchUpdateBetReceiver(id, "deciding", true, `${receiver}`);
 					}}
 					className="m-3"
 					variant="outline-success">
 					{`${receiver} es el ganador`}
 				</Button>
+			</div>
+			<div className="d-flex justify-content-center">
+				<p className={"esperando " + esperando}>esperando respuesta ...</p>
+				<p className={"responde " + responde}>ya respondieron apurate ...</p>
 			</div>
 		</div>
 	);
@@ -82,5 +95,7 @@ ReceiverBetInProgress.propTypes = {
 	ammount: PropTypes.number,
 	emissionDate: PropTypes.string,
 	dueDate: PropTypes.string,
-	status: PropTypes.bool
+	status: PropTypes.bool,
+	winner_sender: PropTypes.string,
+	winner_receiver: PropTypes.string
 };

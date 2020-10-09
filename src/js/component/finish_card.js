@@ -7,7 +7,19 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 import "../../styles/received_card.scss";
 
-export function FinishCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
+export function FinishCard({
+	id,
+	sender,
+	receiver,
+	betTitle,
+	betDesc,
+	ammount,
+	emissionDate,
+	dueDate,
+	state,
+	winner_sender,
+	winner_receiver
+}) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -31,21 +43,12 @@ export function FinishCard({ id, sender, receiver, betTitle, betDesc, ammount, e
 
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
-				{`${store.user.bets_received.status}` && <div className="circle bg-success ml-auto" />}
-			</div>
-			<div className="card-footer justifiy-content-space-around">
-				<Button
-					onClick={e => {
-						actions.fetchUpdateBet(id, "aceptado", true, "", "");
-						location.reload();
-					}}
-					className="m-3"
-					variant="outline-success">
-					Aceptar
-				</Button>
-				<Button className="m-3" variant="outline-danger">
-					Rechazar
-				</Button>
+				{state == "ganador" &&
+					(winner_sender == store.user.username && <div className="circle bg-success ml-auto" />)}
+				{state == "ganador" &&
+					(winner_sender != store.user.username && <div className="circle bg-danger ml-auto" />)}
+				{state == "empate" && <div className="circle bg-primary ml-auto" />}
+				{state == "desacuerdo" && <div className="circle bg-dark ml-auto" />}
 			</div>
 		</div>
 	);
@@ -60,5 +63,8 @@ FinishCard.propTypes = {
 	ammount: PropTypes.number,
 	emissionDate: PropTypes.string,
 	dueDate: PropTypes.string,
-	status: PropTypes.bool
+	status: PropTypes.bool,
+	state: PropTypes.string,
+	winner_sender: PropTypes.string,
+	winner_receiver: PropTypes.string
 };
