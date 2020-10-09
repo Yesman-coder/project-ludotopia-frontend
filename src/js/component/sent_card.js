@@ -7,7 +7,7 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 // import "../../styles/ucard.scss";
 
-export function SentCard({ index, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
+export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -17,7 +17,7 @@ export function SentCard({ index, sender, receiver, betTitle, betDesc, ammount, 
 
 	return (
 		<div className="card text-center column p-3 d-flex">
-			<div className="card-header row m-0 d-flex justify-content-around" id={index}>
+			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>
 				<h3>{receiver}</h3>
@@ -45,7 +45,12 @@ export function SentCard({ index, sender, receiver, betTitle, betDesc, ammount, 
 						</Button>
 						{/* EN ESTE BOTON DE ABAJO HAY QUE AGREGAR EL CAMBIO DE ESTADO PARA EL SOFT DELETE DE LA APUESTA EN
 						LUGAR DEL HANDLECLOSE */}
-						<Button variant="success" onClick={handleClose}>
+						<Button
+							variant="success"
+							onClick={e => {
+								actions.fetchUpdateBet(id, "cancelado", false, "", "");
+								handleClose;
+							}}>
 							Si
 						</Button>
 					</Modal.Footer>
@@ -61,7 +66,6 @@ export function SentCard({ index, sender, receiver, betTitle, betDesc, ammount, 
 }
 
 SentCard.propTypes = {
-	index: PropTypes.number,
 	id: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,

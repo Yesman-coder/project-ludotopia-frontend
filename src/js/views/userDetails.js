@@ -128,7 +128,7 @@ function UserDetails() {
 					<p>{`reputacion: ${reputacion()}%`}</p>
 					{store.userId.bets_received != undefined
 						? store.userId.bets_received.map(newBet => {
-								return (
+								return newBet.status == true ? (
 									<UserCard
 										key={newBet.id}
 										id={newBet.id}
@@ -143,12 +143,14 @@ function UserDetails() {
 										winner_sender={newBet.winner_sender}
 										winner_receiver={newBet.winner_receiver}
 									/>
+								) : (
+									""
 								);
 						  })
 						: ""}
 					{store.userId.bets_sent != undefined
 						? store.userId.bets_sent.map(newBet => {
-								return (
+								return newBet.status == true ? (
 									<UserCard
 										key={newBet.id}
 										id={newBet.id}
@@ -163,6 +165,8 @@ function UserDetails() {
 										winner_sender={newBet.winner_sender}
 										winner_receiver={newBet.winner_receiver}
 									/>
+								) : (
+									""
 								);
 						  })
 						: ""}
