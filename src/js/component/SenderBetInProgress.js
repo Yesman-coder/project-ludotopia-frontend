@@ -35,7 +35,7 @@ export function SenderBetInProgress({
 	}
 
 	return (
-		<div className="card text-center column p-3 d-flex">
+		<div className="card text-center column p-3 d-flex m-4">
 			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Button } from "react-bootstrap";
+import "../../styles/search.scss";
 import { useHistory, Link, Redirect } from "react-router-dom";
 
 function Search() {
@@ -21,11 +21,12 @@ function Search() {
 	});
 
 	return (
-		<>
+		<div className="d-flex flex-row justify-content-center m-4 p-5">
 			{store.token != "" ? (
 				<div className="h-100">
+					<h1 className="p-5">Encuentra usuarios y apuestas!</h1>
 					<input
-						className="m-5"
+						className="search__input"
 						placeholder="Buscar"
 						onChange={e => {
 							setSearch(e.target.value);
@@ -33,18 +34,18 @@ function Search() {
 					/>
 					{filteredUser.map(user => {
 						return (
-							<div className="p-2 m-2 border" key={user.id}>
+							<div className="p-2 m-5 border d-flex justify-content-center" key={user.id}>
 								<Link className="text-decoration-none text-dark" to={`/user/${user.id}`}>
-									<p className="ml-5 mt-1">{`${user.username}`}</p>
+									<h4>{`${user.username}`}</h4>
 								</Link>
 							</div>
 						);
 					})}
 					{filteredBets.map(bet => {
 						return (
-							<div className="p-2 m-2 border" key={bet.id}>
+							<div className="p-2 m-5 border d-flex justify-content-center" key={bet.id}>
 								<Link className="text-decoration-none text-dark" to={`/bet/${bet.id}`}>
-									<p className="ml-5 mt-1">{`${bet.name}`}</p>
+									<h4>{`${bet.name}`}</h4>
 								</Link>
 							</div>
 						);
@@ -53,7 +54,7 @@ function Search() {
 			) : (
 				<Redirect to="/login" />
 			)}
-		</>
+		</div>
 	);
 }
 

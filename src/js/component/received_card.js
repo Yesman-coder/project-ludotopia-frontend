@@ -19,7 +19,7 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 	}
 
 	return (
-		<div className="card text-center column p-3 d-flex">
+		<div className="card text-center column p-3 d-flex m-4">
 			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>
@@ -45,7 +45,7 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 						}
 					}}
 					className="m-3"
-					variant="outline-success">
+					variant="success">
 					Aceptar
 				</Button>
 				<Button
@@ -53,7 +53,7 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 						actions.fetchUpdateBet(id, "rechazado", false, "", "");
 					}}
 					className="m-3"
-					variant="outline-danger">
+					variant="danger">
 					Rechazar
 				</Button>
 			</div>

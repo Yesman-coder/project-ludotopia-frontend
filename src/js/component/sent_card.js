@@ -16,7 +16,7 @@ export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emi
 	const handleShow = () => setShow(true);
 
 	return (
-		<div className="card text-center column p-3 d-flex">
+		<div className="card text-center column p-3 d-flex m-4">
 			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>
@@ -57,7 +57,7 @@ export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emi
 				</Modal>
 			</div>
 			<div className="card-footer justifiy-content-space-around">
-				<Button className="m-3" variant="outline-success" onClick={handleShow}>
+				<Button className="m-3" variant="success" onClick={handleShow}>
 					Cancelar Envio
 				</Button>
 			</div>

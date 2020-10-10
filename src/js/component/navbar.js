@@ -15,23 +15,27 @@ export const Navigation = () => {
 				""
 			) : (
 				<>
-					<nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between" sticky="top">
+					<nav
+						className="navbar navbar-expand-lg navbar-light bg-dark justify-content-between p-0"
+						sticky="top">
 						<Link to="/userhome">
 							<img
 								style={{ width: "2rem", height: "2.2rem" }}
-								className="logo img-fluid rounded d-block ml-4"
+								className="logo img-fluid rounded d-block ml-5"
 								src={Logo}
 								alt="ludotopy-logo"
 							/>
 						</Link>
-						{`${store.user.username}` != "undefined" && <h4>{`${store.user.username}`}</h4>}
+						{`${store.user.username}` != "undefined" && (
+							<h3 className="text-light">{`${store.user.username}`}</h3>
+						)}
 
 						<div className="navbar">
 							<ul className="navbar-nav">
-								<li className="nav-item">
+								<li className="nav-item p-2">
 									<Button variant="success">{`${store.user.ludos} Lds`}</Button>
 								</li>
-								<li className="nav-item">
+								<li className="nav-item p-2">
 									<Button variant="outline-success" onClick={actions.logUserOut}>
 										Log out
 									</Button>
@@ -44,34 +48,6 @@ export const Navigation = () => {
 							</ul>
 						</div>
 					</nav>
-					{/* <Navbar bg="light" sticky="top">
-						<Navbar.Brand>
-							<a href="/userhome">
-								<img
-									style={{ width: "2rem", height: "2.2rem" }}
-									className="logo img-fluid rounded d-block ml-4"
-									src={Logo}
-									alt="ludotopy-logo"
-								/>
-							</a>
-						</Navbar.Brand>
-						{`${store.user.username}` != "undefined" && <h4>{`${store.user.username}`}</h4>}
-						<Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-						<Nav className="m-auto">
-							<Button className="btn-ludos" variant="success" size="sm" block>
-								{`${store.user.ludos} Lds`}
-							</Button>
-							<Button className="btn-ludos btn-sm" variant="outline-success" onClick={actions.logUserOut}>
-								Log out
-							</Button>
-						</Nav>
-						<Form inline>
-							<a href="/create-bet">
-								<Plus style={{ cursor: "pointer" }} className="plus" />
-							</a>
-						</Form>
-					</Navbar> */}
 				</>
 			)}
 		</>

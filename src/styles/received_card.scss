@@ -15,3 +15,12 @@
 .decidido{
   display: none;
 }
+
+.card{
+  background: rgb(253,255,238);
+  background: linear-gradient(90deg, rgba(253,255,238,1) 0%, rgba(255,255,255,1) 48%, rgba(237,255,233,1) 99%);
+  width:40%;
+  -webkit-box-shadow: 32px 54px 101px -68px rgba(42,102,16,1);
+  -moz-box-shadow: 32px 54px 101px -68px rgba(42,102,16,1);
+  box-shadow: 32px 54px 101px -68px rgba(42,102,16,1);
+}
