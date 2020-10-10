@@ -7,7 +7,7 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 import "../../styles/received_card.scss";
 
-export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
+export function CanceledBet({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
@@ -34,28 +34,13 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 				{`${store.user.bets_received.status}` && <div className="circle bg-secondary ml-auto" />}
 			</div>
 			<div className="card-footer justifiy-content-space-around">
-				<Button
-					onClick={e => {
-						actions.fetchUpdateBet(id, "aceptado", true, "", "");
-					}}
-					className="m-3"
-					variant="outline-success">
-					Aceptar
-				</Button>
-				<Button
-					onClick={e => {
-						actions.fetchUpdateBet(id, "rechazado", true, "", "");
-					}}
-					className="m-3"
-					variant="outline-danger">
-					Rechazar
-				</Button>
+				<p>Apuesta cancelada</p>
 			</div>
 		</div>
 	);
 }
 
-ReceivedCard.propTypes = {
+CanceledBet.propTypes = {
 	id: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,
