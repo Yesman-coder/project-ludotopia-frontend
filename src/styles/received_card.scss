@@ -3,3 +3,15 @@
     width: 50px;
     border-radius: 50%;
   }
+
+.esperando{
+  display: none;
+  &.esperandoShow{display: flex;}
+}
+.responde{
+  display: none;
+  &.respondeShow{display: flex;}
+}
+.decidido{
+  display: none;
+}

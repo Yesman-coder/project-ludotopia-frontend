@@ -11,9 +11,12 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const [confirmed, setConfirmed] = useState(false);
+
+	let esperandoShow = "";
+	if (confirmed == true) {
+		esperandoShow = "esperandoShow";
+	}
 
 	return (
 		<div className="card text-center column p-3 d-flex">
@@ -31,12 +34,15 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
-				{`${store.user.bets_received.status}` && <div className="circle bg-secondary ml-auto" />}
 			</div>
 			<div className="card-footer justifiy-content-space-around">
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBet(id, "aceptado", true, "", "");
+						if (ammount < store.user.ludos) {
+							actions.fetchUpdateBet(id, "aceptado", true, "", "");
+						} else {
+							setConfirmed(true);
+						}
 					}}
 					className="m-3"
 					variant="outline-success">
@@ -50,6 +56,12 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 					variant="outline-danger">
 					Rechazar
 				</Button>
+			</div>
+			<div className="d-flex justify-content-center">
+				<p className={"esperando " + esperandoShow}>
+					{" "}
+					esta apuesta no puede ser aceptada, no tiene suficientes ludos
+				</p>
 			</div>
 		</div>
 	);

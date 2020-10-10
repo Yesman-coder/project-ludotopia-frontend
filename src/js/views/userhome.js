@@ -53,7 +53,7 @@ export const UserHome = () => {
 									return (
 										<SentCard
 											key={index}
-											index={index}
+											id={newBet.id}
 											sender={newBet.sender}
 											receiver={newBet.receiver}
 											betTitle={newBet.name}
@@ -71,38 +71,44 @@ export const UserHome = () => {
 						<div className="d-flex flex-column mt-4">
 							<h1 className="m-3">Apuestas Activas</h1>
 							{store.user.bets_received.map((newBet, index) => {
-								console.log(newBet.state);
-								if (newBet.state == "aceptado") {
+								if (newBet.state == "aceptado" || newBet.state == "deciding") {
 									return (
-										<ReceiverBetInProgress
-											key={index}
-											id={newBet.id}
-											sender={newBet.sender}
-											receiver={newBet.receiver}
-											betTitle={newBet.name}
-											betDesc={newBet.description}
-											ammount={newBet.ludos}
-											emissionDate={newBet.create_date}
-											dueDate={newBet.due_date}
-										/>
+										<>
+											<ReceiverBetInProgress
+												key={index}
+												id={newBet.id}
+												sender={newBet.sender}
+												receiver={newBet.receiver}
+												betTitle={newBet.name}
+												betDesc={newBet.description}
+												ammount={newBet.ludos}
+												emissionDate={newBet.create_date}
+												dueDate={newBet.due_date}
+												winner_sender={newBet.winner_sender}
+												winner_receiver={newBet.winner_receiver}
+											/>
+										</>
 									);
 								}
 							})}
-							{store.user.bets_received.map((newBet, index) => {
-								console.log(newBet.state);
-								if (newBet.state == "aceptado") {
+							{store.user.bets_sent.map((newBet, index) => {
+								if (newBet.state == "aceptado" || newBet.state == "deciding") {
 									return (
-										<SenderBetInProgress
-											key={index}
-											id={newBet.id}
-											sender={newBet.sender}
-											receiver={newBet.receiver}
-											betTitle={newBet.name}
-											betDesc={newBet.description}
-											ammount={newBet.ludos}
-											emissionDate={newBet.create_date}
-											dueDate={newBet.due_date}
-										/>
+										<>
+											<SenderBetInProgress
+												key={index}
+												id={newBet.id}
+												sender={newBet.sender}
+												receiver={newBet.receiver}
+												betTitle={newBet.name}
+												betDesc={newBet.description}
+												ammount={newBet.ludos}
+												emissionDate={newBet.create_date}
+												dueDate={newBet.due_date}
+												winner_sender={newBet.winner_sender}
+												winner_receiver={newBet.winner_receiver}
+											/>
+										</>
 									);
 								}
 							})}
@@ -113,8 +119,8 @@ export const UserHome = () => {
 							<h1 className="m-3">Apuestas Concluidas</h1>
 							{store.user.bets_sent.map((newBet, index) => {
 								if (
-									newBet.state == "ganador" ||
 									newBet.state == "empate" ||
+									newBet.state == "ganador" ||
 									newBet.state == "desacuerdo"
 								) {
 									return (
@@ -128,6 +134,33 @@ export const UserHome = () => {
 											ammount={newBet.ludos}
 											emissionDate={newBet.create_date}
 											dueDate={newBet.due_date}
+											state={newBet.state}
+											winner_sender={newBet.winner_sender}
+											winner_receiver={newBet.winner_receiver}
+										/>
+									);
+								}
+							})}
+							{store.user.bets_received.map((newBet, index) => {
+								if (
+									newBet.state == "empate" ||
+									newBet.state == "ganador" ||
+									newBet.state == "desacuerdo"
+								) {
+									return (
+										<FinishCard
+											key={index}
+											index={index}
+											sender={newBet.sender}
+											receiver={newBet.receiver}
+											betTitle={newBet.name}
+											betDesc={newBet.description}
+											ammount={newBet.ludos}
+											emissionDate={newBet.create_date}
+											dueDate={newBet.due_date}
+											state={newBet.state}
+											winner_sender={newBet.winner_sender}
+											winner_receiver={newBet.winner_receiver}
 										/>
 									);
 								}
@@ -158,111 +191,6 @@ export const UserHome = () => {
 					</Tab>
 				</Tabs>
 			) : (
-				// {store.token != "" ? (
-				// 	<div className="h-100">
-				// 		<div className="d-flex flex-column mt-4">
-				// 			<h1 className="m-3">Apuestas Recibidas</h1>
-				// 			{store.user.bets_received.map((newBet, index) => {
-				// 				console.log(newBet.state);
-				// 				if (newBet.state == "enviado") {
-				// 					return (
-				// 						<ReceivedCard
-				// 							key={index}
-				// 							id={newBet.id}
-				// 							sender={newBet.sender}
-				// 							receiver={newBet.receiver}
-				// 							betTitle={newBet.name}
-				// 							betDesc={newBet.description}
-				// 							ammount={newBet.ludos}
-				// 							emissionDate={newBet.create_date}
-				// 							dueDate={newBet.due_date}
-				// 						/>
-				// 					);
-				// 				} else if (newBet.state == "aceptado") {
-				// 					return (
-				// 						<>
-				// 							<ReceiverBetInProgress
-				// 								key={index}
-				// 								id={newBet.id}
-				// 								sender={newBet.sender}
-				// 								receiver={newBet.receiver}
-				// 								betTitle={newBet.name}
-				// 								betDesc={newBet.description}
-				// 								ammount={newBet.ludos}
-				// 								emissionDate={newBet.create_date}
-				// 								dueDate={newBet.due_date}
-				// 							/>
-				// 							<SenderBetInProgress
-				// 								key={index}
-				// 								id={newBet.id}
-				// 								sender={newBet.sender}
-				// 								receiver={newBet.receiver}
-				// 								betTitle={newBet.name}
-				// 								betDesc={newBet.description}
-				// 								ammount={newBet.ludos}
-				// 								emissionDate={newBet.create_date}
-				// 								dueDate={newBet.due_date}
-				// 							/>
-				// 						</>
-				// 					);
-				// 				}
-				// 			})}
-				// 		</div>
-				// 		<div className="d-flex flex-column mt-4">
-				// 			<h1 className="m-3">Apuestas Enviadas</h1>
-				// 			{store.user.bets_sent.map((newBet, index) => {
-				// 				if (newBet.state == "enviado") {
-				// 					return (
-				// 						<SentCard
-				// 							key={index}
-				// 							index={index}
-				// 							sender={newBet.sender}
-				// 							receiver={newBet.receiver}
-				// 							betTitle={newBet.name}
-				// 							betDesc={newBet.description}
-				// 							ammount={newBet.ludos}
-				// 							emissionDate={newBet.create_date}
-				// 							dueDate={newBet.due_date}
-				// 						/>
-				// 					);
-				// 				} else if (newBet.state == "aceptado") {
-				// 					return (
-				// 						<SenderBetInProgress
-				// 							key={index}
-				// 							id={newBet.id}
-				// 							sender={newBet.sender}
-				// 							receiver={newBet.receiver}
-				// 							betTitle={newBet.name}
-				// 							betDesc={newBet.description}
-				// 							ammount={newBet.ludos}
-				// 							emissionDate={newBet.create_date}
-				// 							dueDate={newBet.due_date}
-				// 						/>
-				// 					);
-				// 				}
-				// 			})}
-				// 		</div>
-				// 		<div className="d-flex flex-column mt-4">
-				// 			<h1 className="m-3">Apuestas Concluidas</h1>
-				// 			{store.user.bets_sent.map((newBet, index) => {
-				// 				if (newBet.state == "ganador" || newBet.state == "empate" || newBet.state == "desacuerdo") {
-				// 					return (
-				// 						<FinishCard
-				// 							key={index}
-				// 							index={index}
-				// 							sender={newBet.sender}
-				// 							receiver={newBet.receiver}
-				// 							betTitle={newBet.name}
-				// 							betDesc={newBet.description}
-				// 							ammount={newBet.ludos}
-				// 							emissionDate={newBet.create_date}
-				// 							dueDate={newBet.due_date}
-				// 						/>
-				// 					);
-				// 				}
-				// 			})}
-				// 		</div>
-				// 	</div>
 				<Redirect to="/login" />
 			)}
 		</>

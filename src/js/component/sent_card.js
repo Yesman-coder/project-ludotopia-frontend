@@ -7,7 +7,7 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 // import "../../styles/ucard.scss";
 
-export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
+export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
