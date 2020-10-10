@@ -7,19 +7,16 @@ import { TrashFill } from "react-bootstrap-icons";
 import { Button, Modal } from "react-bootstrap";
 import "../../styles/received_card.scss";
 
-export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
+export function CanceledBet({ id, sender, receiver, betTitle, betDesc, ammount, emissionDate, dueDate, status }) {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
-	const [confirmed, setConfirmed] = useState(false);
-
-	let esperandoShow = "";
-	if (confirmed == true) {
-		esperandoShow = "esperandoShow";
-	}
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	return (
-		<div className="card text-center column p-3 d-flex m-4">
+		<div className="card text-center column p-3 d-flex">
 			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>
@@ -34,40 +31,16 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
+				{`${store.user.bets_received.status}` && <div className="circle bg-secondary ml-auto" />}
 			</div>
 			<div className="card-footer justifiy-content-space-around">
-				<Button
-					onClick={e => {
-						if (ammount < store.user.ludos) {
-							actions.fetchUpdateBet(id, "aceptado", true, "", "");
-						} else {
-							setConfirmed(true);
-						}
-					}}
-					className="m-3"
-					variant="success">
-					Aceptar
-				</Button>
-				<Button
-					onClick={e => {
-						actions.fetchUpdateBet(id, "rechazado", true, "", "");
-					}}
-					className="m-3"
-					variant="danger">
-					Rechazar
-				</Button>
-			</div>
-			<div className="d-flex justify-content-center">
-				<p className={"esperando " + esperandoShow}>
-					{" "}
-					esta apuesta no puede ser aceptada, no tiene suficientes ludos
-				</p>
+				<p>Apuesta cancelada</p>
 			</div>
 		</div>
 	);
 }
 
-ReceivedCard.propTypes = {
+CanceledBet.propTypes = {
 	id: PropTypes.number,
 	sender: PropTypes.string,
 	receiver: PropTypes.string,

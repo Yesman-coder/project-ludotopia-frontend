@@ -5,6 +5,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import { ReceivedCard } from "../component/received_card.js";
 import { SenderBetInProgress } from "../component/SenderBetInProgress.js";
 import { ReceiverBetInProgress } from "../component/ReceiverBetInProgress.js";
+import { CanceledBet } from "../component/CanceledBet.js";
 import { SentCard } from "../component/sent_card.js";
 import { FinishCard } from "../component/finish_card.js";
 import { Tabs, Tab } from "react-bootstrap";
@@ -172,6 +173,28 @@ export const UserHome = () => {
 									}
 								})}
 							</div>
+						</div>
+					</Tab>
+					<Tab eventKey="canceled" title="Apuestas Canceladas">
+						<div className="d-flex flex-column mt-4">
+							<h1 className="m-3">Apuestas Canceladas</h1>
+							{store.user.bets_sent.map((newBet, index) => {
+								if (newBet.state == "rechazado") {
+									return (
+										<CanceledBet
+											key={index}
+											id={newBet.id}
+											sender={newBet.sender}
+											receiver={newBet.receiver}
+											betTitle={newBet.name}
+											betDesc={newBet.description}
+											ammount={newBet.ludos}
+											emissionDate={newBet.create_date}
+											dueDate={newBet.due_date}
+										/>
+									);
+								}
+							})}
 						</div>
 					</Tab>
 				</Tabs>
