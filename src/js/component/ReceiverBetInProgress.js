@@ -35,7 +35,7 @@ export function ReceiverBetInProgress({
 	}
 
 	return (
-		<div className="card text-center column p-3 d-flex mb-3">
+		<div className="card text-center column p-3 d-flex m-4">
 			<div className="card-header row m-0 d-flex justify-content-around">
 				<h3>{sender}</h3>
 				<h4 className="text-muted">VS</h4>
@@ -52,7 +52,7 @@ export function ReceiverBetInProgress({
 				<p className="mt-3">Due Date {dueDate}</p>
 				{`${store.user.bets_received.status}` && <div className="circle bg-warning ml-auto" />}
 			</div>
-			<div className={"card-footer justifiy-content-space-around " + decidido}>
+			<div className={"card-footer" + decidido}>
 				<Button
 					onClick={e => {
 						actions.fetchUpdateBetReceiver(id, "deciding", true, `${sender}`);
