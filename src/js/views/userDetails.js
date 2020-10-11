@@ -130,17 +130,18 @@ function UserDetails() {
 					<div
 						className="d-flex flex-row align-items-center m-4 justify-content-between pb-3"
 						style={{ borderBottom: "3px solid #e1eae2" }}>
-						<h3 className="d-flex">
+						<h3 className="d-flex flex-column align-items-center">
 							Total de apuestas:
-							{"\n"} {totalBets()}
+							<h1>{totalBets()}</h1>
 						</h3>
-						<h3>
+						<h3 className="d-flex flex-column align-items-center">
 							Reputacion:
-							{"\n"} {`${reputacion()}%`}
+							{reputacion() >= 60 && <h1 className="text-success">{`${reputacion()}%`}</h1>}
+							{reputacion() <= 59 && <h1 className="text-danger">{`${reputacion()}%`}</h1>}
 						</h3>
-						<h3>
+						<h3 className="d-flex flex-column align-items-center">
 							Apuestas ganadas:
-							{"\n"} {totalBetsWins()}
+							<h1>{totalBetsWins()}</h1>
 						</h3>
 					</div>
 
@@ -152,50 +153,52 @@ function UserDetails() {
 ------------------------------------------------------------------------------*/}
 
 					<div className="d-flex flex-column mt-4 align-items-center">
-						{store.userId.bets_received != undefined
-							? store.userId.bets_received.map(newBet => {
-									return newBet.status == true ? (
-										<UserCard
-											key={newBet.id}
-											id={newBet.id}
-											sender={newBet.sender}
-											receiver={newBet.receiver}
-											betTitle={newBet.name}
-											betDesc={newBet.description}
-											ammount={newBet.ludos}
-											emissionDate={newBet.create_date}
-											dueDate={newBet.due_date}
-											state={newBet.state}
-											winner_sender={newBet.winner_sender}
-											winner_receiver={newBet.winner_receiver}
-										/>
-									) : (
-										""
-									);
-							  })
-							: ""}
-						{store.userId.bets_sent != undefined
-							? store.userId.bets_sent.map(newBet => {
-									return newBet.status == true ? (
-										<UserCard
-											key={newBet.id}
-											id={newBet.id}
-											sender={newBet.sender}
-											receiver={newBet.receiver}
-											betTitle={newBet.name}
-											betDesc={newBet.description}
-											ammount={newBet.ludos}
-											emissionDate={newBet.create_date}
-											dueDate={newBet.due_date}
-											state={newBet.state}
-											winner_sender={newBet.winner_sender}
-											winner_receiver={newBet.winner_receiver}
-										/>
-									) : (
-										""
-									);
-							  })
-							: ""}
+						<div className="d-flex row w-100 justify-content-center">
+							{store.userId.bets_received != undefined
+								? store.userId.bets_received.map(newBet => {
+										return newBet.status == true ? (
+											<UserCard
+												key={newBet.id}
+												id={newBet.id}
+												sender={newBet.sender}
+												receiver={newBet.receiver}
+												betTitle={newBet.name}
+												betDesc={newBet.description}
+												ammount={newBet.ludos}
+												emissionDate={newBet.create_date}
+												dueDate={newBet.due_date}
+												state={newBet.state}
+												winner_sender={newBet.winner_sender}
+												winner_receiver={newBet.winner_receiver}
+											/>
+										) : (
+											""
+										);
+								  })
+								: ""}
+							{store.userId.bets_sent != undefined
+								? store.userId.bets_sent.map(newBet => {
+										return newBet.status == true ? (
+											<UserCard
+												key={newBet.id}
+												id={newBet.id}
+												sender={newBet.sender}
+												receiver={newBet.receiver}
+												betTitle={newBet.name}
+												betDesc={newBet.description}
+												ammount={newBet.ludos}
+												emissionDate={newBet.create_date}
+												dueDate={newBet.due_date}
+												state={newBet.state}
+												winner_sender={newBet.winner_sender}
+												winner_receiver={newBet.winner_receiver}
+											/>
+										) : (
+											""
+										);
+								  })
+								: ""}
+						</div>
 					</div>
 				</div>
 			) : (
