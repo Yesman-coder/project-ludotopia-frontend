@@ -83,7 +83,7 @@ function UserDetails() {
 		if (store.userId.bets_received != undefined) {
 			totalbets += store.userId.bets_received.length;
 			store.userId.bets_received.map(newBet => {
-				if (newBet.state == "desacuerdo") {
+				if (newBet.state != "desacuerdo") {
 					bets += 1;
 				}
 			});
@@ -91,7 +91,7 @@ function UserDetails() {
 		if (store.userId.bets_sent != undefined) {
 			totalbets += store.userId.bets_sent.length;
 			store.userId.bets_sent.map(newBet => {
-				if (newBet.state == "desacuerdo") {
+				if (newBet.state != "desacuerdo") {
 					bets += 1;
 				}
 			});

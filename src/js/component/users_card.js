@@ -41,7 +41,6 @@ export function UserCard({
 
 				{state == "aceptado" && <div className="circle bg-warning ml-auto" />}
 				{state == "deciding" && <div className="circle bg-warning ml-auto" />}
-				{state == "enviado" && <div className="circle bg-secondary ml-auto" />}
 				{state == "ganador" &&
 					(winner_sender == store.userId.username && <div className="circle bg-success ml-auto" />)}
 				{state == "ganador" &&

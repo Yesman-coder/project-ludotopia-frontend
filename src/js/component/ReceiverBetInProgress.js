@@ -52,7 +52,7 @@ export function ReceiverBetInProgress({
 				<p className="mt-3">Due Date {dueDate}</p>
 				{`${store.user.bets_received.status}` && <div className="circle bg-warning ml-auto" />}
 			</div>
-			<div className={"card-footer" + decidido}>
+			<div className={"card-footer " + decidido}>
 				<Button
 					onClick={e => {
 						actions.fetchUpdateBetReceiver(id, "deciding", true, `${sender}`);

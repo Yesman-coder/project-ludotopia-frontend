@@ -178,23 +178,25 @@ export const UserHome = () => {
 					<Tab eventKey="canceled" title="Apuestas Canceladas">
 						<div className="d-flex flex-column mt-4">
 							<h1 className="m-3">Apuestas Canceladas</h1>
-							{store.user.bets_sent.map((newBet, index) => {
-								if (newBet.state == "rechazado") {
-									return (
-										<CanceledBet
-											key={index}
-											id={newBet.id}
-											sender={newBet.sender}
-											receiver={newBet.receiver}
-											betTitle={newBet.name}
-											betDesc={newBet.description}
-											ammount={newBet.ludos}
-											emissionDate={newBet.create_date}
-											dueDate={newBet.due_date}
-										/>
-									);
-								}
-							})}
+							<div className="d-flex row w-100 justify-content-center">
+								{store.user.bets_sent.map((newBet, index) => {
+									if (newBet.state == "rechazado" || newBet.state == "cancelado") {
+										return (
+											<CanceledBet
+												key={index}
+												id={newBet.id}
+												sender={newBet.sender}
+												receiver={newBet.receiver}
+												betTitle={newBet.name}
+												betDesc={newBet.description}
+												ammount={newBet.ludos}
+												emissionDate={newBet.create_date}
+												dueDate={newBet.due_date}
+											/>
+										);
+									}
+								})}
+							</div>
 						</div>
 					</Tab>
 				</Tabs>
