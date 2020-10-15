@@ -180,7 +180,7 @@ export const UserHome = () => {
 							<h1 className="m-3">Apuestas Canceladas</h1>
 							<div className="d-flex row w-100 justify-content-center">
 								{store.user.bets_sent.map((newBet, index) => {
-									if (newBet.state == "rechazado" || newBet.state == "cancelado") {
+									if (newBet.state == "rechazado" || newBet.state == "rechazado") {
 										return (
 											<CanceledBet
 												key={index}
