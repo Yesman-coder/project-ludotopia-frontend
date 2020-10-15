@@ -17,6 +17,7 @@ export const UserHome = () => {
 	useEffect(() => {
 		actions.fetchGetUser(store.token);
 	}, []);
+	setInterval(console.log("cada 3 seg"), 3000);
 
 	return (
 		<>

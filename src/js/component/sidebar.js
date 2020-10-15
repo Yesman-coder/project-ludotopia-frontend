@@ -10,7 +10,7 @@ export const Sidebar = () => {
 	const location = useLocation();
 	return (
 		<>
-			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/home" ? (
+			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/" ? (
 				""
 			) : (
 				<div className="sidebar col-3 col-md-2 col-lg-1 p-0 ">

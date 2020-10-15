@@ -9,9 +9,10 @@ import "../../styles/navbar.scss";
 export const Navigation = () => {
 	const { store, actions } = useContext(Context);
 	const location = useLocation();
+
 	return (
 		<>
-			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/home" ? (
+			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/" ? (
 				""
 			) : (
 				<>
@@ -37,7 +38,7 @@ export const Navigation = () => {
 								</li>
 								<li className="nav-item p-2">
 									<Button variant="outline-success" onClick={actions.logUserOut}>
-										Log out
+										Cerrar Sesion
 									</Button>
 								</li>
 								<li className="nav-item">
