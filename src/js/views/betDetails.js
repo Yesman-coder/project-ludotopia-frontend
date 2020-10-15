@@ -40,11 +40,10 @@ function BetDetails() {
 									<h3 className="text-danger">{`Perdió: ${store.betId.sender}`}</h3>
 								)}
 							{store.betId.state == "ganador" && store.betId.winner_sender == store.betId.sender ? (
-								<p>{`Perdió: ${store.betId.receiver}`}</p>
+								<h3 className="text-danger">{`Perdió: ${store.betId.receiver}`}</h3>
 							) : (
 								""
 							)}
-							{store.betId.state == "ganador" && <div className="circle bg-success ml-auto" />}
 							{store.betId.state == "deciding" && <div className="circle bg-warning ml-auto" />}
 							{store.betId.state == "aceptado" && <div className="circle bg-warning ml-auto" />}
 							{store.betId.state == "enviado" && <div className="circle bg-secondary ml-auto" />}
