@@ -35,7 +35,7 @@ export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emi
 			<div className="card-footer justifiy-content-space-around">
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBet(id, "cancelado", true, "", "");
+						actions.fetchUpdateBet(id, "rechazado", false, "", "");
 					}}
 					className="m-3"
 					variant="danger">

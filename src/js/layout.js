@@ -47,7 +47,7 @@ const Layout = () => {
 								<Route path="/bet/:id">
 									<BetDetails />
 								</Route>
-								<Route exact path="/home">
+								<Route exact path="/">
 									<Home />
 								</Route>
 								<Route exact path="/createBet">

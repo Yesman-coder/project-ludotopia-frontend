@@ -50,7 +50,7 @@ export function ReceivedCard({ id, sender, receiver, betTitle, betDesc, ammount,
 				</Button>
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBet(id, "rechazado", true, "", "");
+						actions.fetchUpdateBet(id, "rechazado", false, "", "");
 					}}
 					className="m-3"
 					variant="danger">

@@ -81,17 +81,21 @@ function UserDetails() {
 		let bets = 0;
 		let totalbets = 0;
 		if (store.userId.bets_received != undefined) {
-			totalbets += store.userId.bets_received.length;
 			store.userId.bets_received.map(newBet => {
-				if (newBet.state != "desacuerdo") {
+				if (newBet.state == "ganador" || newBet.state == "empate" || newBet.state == "desacuerdo") {
+					totalbets += 1;
+				}
+				if (newBet.state == "ganador" || newBet.state == "empate") {
 					bets += 1;
 				}
 			});
 		}
 		if (store.userId.bets_sent != undefined) {
-			totalbets += store.userId.bets_sent.length;
 			store.userId.bets_sent.map(newBet => {
-				if (newBet.state != "desacuerdo") {
+				if (newBet.state == "ganador" || newBet.state == "empate" || newBet.state == "desacuerdo") {
+					totalbets += 1;
+				}
+				if (newBet.state == "ganador" || newBet.state == "empate") {
 					bets += 1;
 				}
 			});
