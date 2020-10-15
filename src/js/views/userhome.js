@@ -121,7 +121,7 @@ export const UserHome = () => {
 						</div>
 					</Tab>
 					<Tab eventKey="finished" title="Apuestas Concluidas">
-						<div className="d-flex flex-column mt-4">
+						<div className="d-flex flex-column mt-4 align-items-center">
 							<h1 className="m-3">Apuestas Concluidas</h1>
 							<div className="d-flex row w-100 justify-content-center">
 								{store.user.bets_sent.map((newBet, index) => {
@@ -176,7 +176,7 @@ export const UserHome = () => {
 						</div>
 					</Tab>
 					<Tab eventKey="canceled" title="Apuestas Canceladas">
-						<div className="d-flex flex-column mt-4">
+						<div className="d-flex flex-column mt-4 align-items-center">
 							<h1 className="m-3">Apuestas Canceladas</h1>
 							<div className="d-flex row w-100 justify-content-center">
 								{store.user.bets_sent.map((newBet, index) => {
