@@ -60,7 +60,7 @@ export const Register = () => {
 				<>
 					<a href="/register">
 						<img
-							style={{ width: "120px", height: "20vh" }}
+							style={{ width: "auto", height: "20vh" }}
 							className="img-fluid rounded mx-auto d-block mt-2"
 							src={Logo}
 							alt="ludotopy-logo"
