@@ -17,6 +17,7 @@ export const UserHome = () => {
 	useEffect(() => {
 		actions.fetchGetUser(store.token);
 	}, []);
+	setInterval(console.log("cada 3 seg"), 3000);
 
 	return (
 		<>
@@ -121,7 +122,7 @@ export const UserHome = () => {
 						</div>
 					</Tab>
 					<Tab eventKey="finished" title="Apuestas Concluidas">
-						<div className="d-flex flex-column mt-4">
+						<div className="d-flex flex-column mt-4 align-items-center">
 							<h1 className="m-3">Apuestas Concluidas</h1>
 							<div className="d-flex row w-100 justify-content-center">
 								{store.user.bets_sent.map((newBet, index) => {
@@ -176,25 +177,27 @@ export const UserHome = () => {
 						</div>
 					</Tab>
 					<Tab eventKey="canceled" title="Apuestas Canceladas">
-						<div className="d-flex flex-column mt-4">
+						<div className="d-flex flex-column mt-4 align-items-center">
 							<h1 className="m-3">Apuestas Canceladas</h1>
-							{store.user.bets_sent.map((newBet, index) => {
-								if (newBet.state == "rechazado") {
-									return (
-										<CanceledBet
-											key={index}
-											id={newBet.id}
-											sender={newBet.sender}
-											receiver={newBet.receiver}
-											betTitle={newBet.name}
-											betDesc={newBet.description}
-											ammount={newBet.ludos}
-											emissionDate={newBet.create_date}
-											dueDate={newBet.due_date}
-										/>
-									);
-								}
-							})}
+							<div className="d-flex row w-100 justify-content-center">
+								{store.user.bets_sent.map((newBet, index) => {
+									if (newBet.state == "rechazado" || newBet.state == "rechazado") {
+										return (
+											<CanceledBet
+												key={index}
+												id={newBet.id}
+												sender={newBet.sender}
+												receiver={newBet.receiver}
+												betTitle={newBet.name}
+												betDesc={newBet.description}
+												ammount={newBet.ludos}
+												emissionDate={newBet.create_date}
+												dueDate={newBet.due_date}
+											/>
+										);
+									}
+								})}
+							</div>
 						</div>
 					</Tab>
 				</Tabs>

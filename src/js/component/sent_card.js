@@ -31,12 +31,11 @@ export function SentCard({ id, sender, receiver, betTitle, betDesc, ammount, emi
 
 				<p className="mt-3">Emission Date {emissionDate}</p>
 				<p className="mt-3">Due Date {dueDate}</p>
-				{`${store.user.bets_received.status}` && <div className="circle bg-secondary ml-auto" />}
 			</div>
 			<div className="card-footer justifiy-content-space-around">
 				<Button
 					onClick={e => {
-						actions.fetchUpdateBet(id, "rechazado", true, "", "");
+						actions.fetchUpdateBet(id, "rechazado", false, "", "");
 					}}
 					className="m-3"
 					variant="danger">
