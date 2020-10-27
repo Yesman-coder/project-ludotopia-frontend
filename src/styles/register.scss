@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     width: 70vw;
+    height: 4vh;
 }
 .label{
     font-family: Raleway;
@@ -25,13 +26,14 @@ h1 {
 .button{
     margin: auto;
     width: 45vw;
-    height: 40px;
+    height: 4vh;
     border-radius: 20px;
     border: none;
     background: #5EC762;
     font-size: 1.2em;
     margin-bottom: 20px;
     margin-top: 30px;
+    padding: 0rem 1.25em !important;
 }
 .button:hover{
     background: #5EC762;
