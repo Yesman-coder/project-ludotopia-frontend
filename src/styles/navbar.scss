@@ -5,35 +5,46 @@
 
 .navbar{
     padding: 0.5rem 0.5rem;
-   
+    height: 80px;
+    width: 100%;
 }
+
 
 
 .sidebar {
     display:flex;
     border-right: 1px solid #797B79;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
     
 }
 
 
 .icon{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color:#5EC762;
     &:hover{
     color:gray;
     }
 }
 
-.btn-ludos {
-    color:white;
-    border-radius: 20px;
-    font-size: 1.5rem;
-    font-weight: 800;
+.correct-size {
+    widows: 100px;
+    font-size: 20px;
+}
+@media only screen and (min-width: 1200px) {
+    .input {
+        width: 30vw;
+    }
+    .button{
+        width: 25vw;
+    }
 }
 
 .plus{
     color:gray;
-    font-size:4rem;
+    font-size:3.5rem;
 }
 
 

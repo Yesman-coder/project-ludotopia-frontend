@@ -13,13 +13,16 @@ export const Sidebar = () => {
 			{location.pathname == "/register" || location.pathname == "/login" || location.pathname == "/" ? (
 				""
 			) : (
-				<div className="sidebar col-3 col-md-2 col-lg-1 p-0 ">
-					<nav className="nav flex-column w-100 text-center pl-3">
-						<Link className="icon nav-link" to="/userhome">
+				<div className="sidebar justify-content-center align-self-center fixed-bottom bg-dark sticky-bottom  p-0">
+					<nav className="nav flex-column w-100 text-center ">
+						<Link className="icon nav-link " to="/userhome">
 							<Bullseye />
 						</Link>
 						<Link className="icon nav-link" to="/search">
 							<Search />
+						</Link>
+						<Link to="/createBet">
+							<Plus style={{ cursor: "pointer" }} className="plus" />
 						</Link>
 						<a className="icon nav-link" href="#">
 							<BellFill />
