@@ -126,9 +126,9 @@ function UserDetails() {
 					<div
 						className="d-flex flex-row align-items-center m-4 justify-content-between"
 						style={{ borderBottom: "3px solid #e0e0e0" }}>
-						<div className="circle-user ml-5" style={{ backgroundImage: `url(${User})` }} />
-						<h1 className="m-5">{store.userId.username}</h1>
-						<h1 className="ludos-btn btn-success m-1 ml-4">{`${store.userId.ludos} lds`}</h1>
+						<div className="circle-user" style={{ backgroundImage: `url(${User})` }} />
+						<h1>{store.userId.username}</h1>
+						<h1 className="ludos-btn btn-success m-1">{`${store.userId.ludos} lds`}</h1>
 					</div>
 
 					<div

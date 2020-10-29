@@ -20,3 +20,37 @@
     -webkit-border-radius: 37px 37px 37px 37px;
     border: 0px solid #000000;
 }
+
+@media (max-width: 550px){
+    .card {
+        border-radius: 37px 37px 37px 37px;
+        -moz-border-radius: 37px 37px 37px 37px;
+        -webkit-border-radius: 37px 37px 37px 37px;
+        border: 0px solid #000000;
+        width: 110%;
+    }
+
+    h3{
+        font-size: 5vw;
+    }
+
+    h1{
+        font-size: 7vw;
+    }
+
+    .circle-user {
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        width: 14vw;
+        height: 8vh;
+    }
+
+    .ludos-btn{
+        font-size: 5vw;
+        border-radius: 20%;
+        padding:1.5%;
+    
+    }
+
+}
