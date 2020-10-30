@@ -16,38 +16,22 @@ export const Navigation = () => {
 				""
 			) : (
 				<>
-					<nav
-						className="navbar navbar-expand-lg navbar-light bg-dark justify-content-between p-0"
-						sticky="top">
-						<Link to="/userhome">
+					<nav className="navbar d-md-flex  fixed-top bg-dark justify-content-between    p-0">
+						<Link className="px-4 " to="/userhome">
 							<img
 								style={{ width: "2rem", height: "2.2rem" }}
-								className="logo img-fluid rounded d-block ml-5"
+								className="logo img-fluid rounded d-block "
 								src={Logo}
 								alt="ludotopy-logo"
 							/>
 						</Link>
 						{`${store.user.username}` != "undefined" && (
-							<h3 className="text-light">{`${store.user.username}`}</h3>
+							<h3 className="username text-center text-light">{`${store.user.username}`}</h3>
 						)}
 
-						<div className="navbar">
-							<ul className="navbar-nav">
-								<li className="nav-item p-2">
-									<Button variant="success">{`${store.user.ludos} Lds`}</Button>
-								</li>
-								<li className="nav-item p-2">
-									<Button variant="outline-success" onClick={actions.logUserOut}>
-										Cerrar Sesion
-									</Button>
-								</li>
-								<li className="nav-item">
-									<Link to="/createBet">
-										<Plus style={{ cursor: "pointer" }} className="plus" />
-									</Link>
-								</li>
-							</ul>
-						</div>
+						<Button className="correct-size nav-item mr-2" variant="success">{`${
+							store.user.ludos
+						} Lds`}</Button>
 					</nav>
 				</>
 			)}

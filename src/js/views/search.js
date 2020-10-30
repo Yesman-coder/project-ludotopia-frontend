@@ -21,7 +21,7 @@ function Search() {
 	});
 
 	return (
-		<div className="d-flex flex-row justify-content-center m-4 p-5">
+		<div className="d-flex flex-row justify-content-center ">
 			{store.token != "" ? (
 				<div className="h-100">
 					<h1 className="p-5">Encuentra usuarios y apuestas!</h1>

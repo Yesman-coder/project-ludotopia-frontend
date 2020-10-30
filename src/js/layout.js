@@ -16,6 +16,7 @@ import { Sidebar } from "./component/sidebar";
 import { CreateBet } from "./views/createBet";
 import UserDetails from "./views/userDetails";
 import BetDetails from "./views/betDetails";
+import "../styles/layout.scss";
 
 //create your first component
 const Layout = () => {
@@ -28,9 +29,9 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navigation />
-					<div className="row w-100 h-100">
+					<div className="row content mt-md-5 w-100 h-100">
 						<Sidebar />
-						<div className="col">
+						<div className="col content">
 							<Switch>
 								{/* <Route exact path="/register">
 							<Register />
